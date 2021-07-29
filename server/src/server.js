@@ -1,9 +1,10 @@
 const PORT = process.env.PORT || 8080;
 
 const express = require('express');
+const morgan = require('morgan')
 const app = express();
 
-
+app.use(morgan('dev'));
 
 const knex = require('./db/connection');
 
@@ -30,8 +31,11 @@ knex.migrate
   });
 
 // resource routes
-app.use('/users', usersRoutes);
+app.use("/users", usersRoutes);
 // app.use('/api', apiRoutes(knex));
 
+app.get("/", (req, res) => {
+  res.send('Root')
+});
 
 app.listen(PORT, listener)

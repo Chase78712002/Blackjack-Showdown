@@ -3,9 +3,8 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 
 module.exports = () => {
-  app.get("/", (req, res) => {
-    console.log("users route ping")
-    // res.send('Whoo');
-    return
+  router.get("/", (req, res) => {
+    res.send('User root!');
+    return;
   })
 }
