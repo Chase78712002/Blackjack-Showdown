@@ -1,11 +1,13 @@
 const knex = require("../db/connection");
 const tableName = "users";
 
-exports.getUsers = async () => {
-  try{
-    const users = await knex('users')
-    return users
-  }catch(error){
-    throw Error(error)
+exports.getUsers = () => {
+  
+  knex.select().from(tableName)
+  .then((data) => {
+    console.log('did query some data')
+    return data
+  }).catch((err) => {
+    console.log(`query broken and error ${err}`)
+  })
   }
-}

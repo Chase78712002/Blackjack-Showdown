@@ -31,7 +31,7 @@ knex.migrate
   });
 
 // resource routes
-// app.use("/users", usersRoutes);
+app.use("/users", usersRoutes);
 // app.use("/api", apiRoutes);
 
 app.get("/", (req, res) => {
