@@ -15,14 +15,6 @@ class Card {
     this.suit = suit;
     this.value = value;
   }
-
-  get suit() {
-    return this.suit;
-  }
-
-  get value() {
-    return this.value;
-  }
 }
 
 class Deck {
@@ -82,6 +74,25 @@ class Player {
       sum += card.value;
     }
     return sum;
+  }
+
+  countAce() {
+    let count = 0;
+    for (const card of this.hand) {
+      if (card.name === 'Ace') {
+        count += 1;
+      }
+    }
+    return count;
+  }
+
+  adjustAceHandscore() {
+    for (const ace in this.countAce) {
+      if (this.handscore < 12) {
+        self.handscore += 10;
+      }
+    }
+    return this.handscore;
   }
 
   resetHand() {
