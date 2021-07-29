@@ -1,5 +1,6 @@
 const asyncErrorBoundary = require("../errors/asyncErrorBoundary");
 const service = require("./users.service");
+const bcrypt = require('bcrypt')
 
 async function validateNewUser (req, res, next) {
   const {data: {username, password, email} = {}} = req.body;
@@ -36,6 +37,7 @@ async function isUsernameUnique (req, res, next) {
   next();
 }
 async function createUser(req, res) {
+  req.body.data.password = bcrypt.hashSync(req.body.data.password, 12)
   const data = await service.create(req.body.data);
   res.status(204).json({ data })
 }
