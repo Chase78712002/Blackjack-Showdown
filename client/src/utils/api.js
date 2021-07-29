@@ -31,7 +31,7 @@ async function fetchJson(url, options, onCancel) {
   }
 
 export async function postUser(reqBody, signal) {
-    const url = new URL(`${API_BASE_URL}/users/`);
+    const url = new URL(`${API_BASE_URL}/users/register`);
     return await fetchJson(url, { method: 'POST', headers, signal, body: JSON.stringify({data: reqBody})}, [])
   }
 

@@ -6,7 +6,7 @@ import CreateUserPage from "./pages/CreateUserPage";
 function App() {
   return (
     <>
-    {/* <CreateUserPage /> */}
+    <CreateUserPage />
     <LoginPage />
     </>
   );

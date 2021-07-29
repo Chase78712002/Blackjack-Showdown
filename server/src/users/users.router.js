@@ -4,10 +4,10 @@ const controller = require("./users.controller");
 
 router.route("/")
     .get(controller.getUsers)
-    .post(controller.createUser)
+    // .post(controller.createUser)
 
 router.put("/login", controller.login)
-// router.put("/register", createUser)
+router.post("/register", controller.createUser)
 
 
 module.exports = router;
