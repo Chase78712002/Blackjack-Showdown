@@ -1,6 +1,5 @@
 
 exports.up = function(knex) {
-    console.log("WHATS GOING ON")
   return knex.schema.createTable("users", (table) => {
     table.increments("id").primary();
     table.string("username").unique().notNullable();
