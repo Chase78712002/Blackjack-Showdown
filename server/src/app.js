@@ -12,7 +12,7 @@ const notFound = require("./errors/notFound");
 
 // api and user routers
 const usersRouter = require("./users/users.router");
-const apiRouter = require("./users/users.router");
+//const apiRouter = require("./users/users.router");
 
 
 const app = express();
@@ -24,7 +24,7 @@ app.use(express.json());
 
 // //Routes
 const usersRoutes = require('./users/users.router');
-const apiRoutes = require('./api/apiRoutes');
+//const apiRoutes = require('./api/apiRoutes');
 
 app.use("/users", usersRouter);
 
