@@ -2,6 +2,11 @@ class Game {
   constructor(id) {
     this.id = id;
   }
+
+  //players
+  //deck
+  //turn
+  //bet/pot
 }
 
 class Card {
@@ -10,28 +15,36 @@ class Card {
     this.suit = suit;
     this.value = value;
   }
+
+  get suit() {
+    return this.suit;
+  }
+
+  get value() {
+    return this.value;
+  }
 }
 
 class Deck {
   constructor() {
-    this.deck = [];
-    this.deckBuilder();
+    this.cards = [];
+    this.cardsBuilder();
   }
 
   get remaining() {
-    return this.deck.length;
+    return this.cards.length;
   }
 
   shuffle() {
-    for (let i = this.deck.length - 1; i > 0; i--) {
+    for (let i = this.cards.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
-      const temp = this.deck[i];
-      this.deck[i] = this.deck[j];
-      this.deck[j] = temp;
+      const temp = this.cards[i];
+      this.cards[i] = this.cards[j];
+      this.cards[j] = temp;
     }
   }
 
-  deckBuilder() {
+  cardsBuilder() {
     const values = ['Ace', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'Jack', 'Queen', 'King'];
     const suits = ['Diamonds', 'Clubs', 'Hearts', 'Spades'];
 
@@ -48,8 +61,37 @@ class Deck {
           numVal = values[j];
         }
 
-        this.deck.push(new Card(name, suits[i], numVal));
+        this.cards.push(new Card(name, suits[i], numVal));
       }
+    }
+  }
+}
+
+class Player {
+  constructor() {
+    this.hand = [];
+    this.handvalue = 0;
+  }
+
+  get hand() {
+    return this.hand;
+  }
+  get handvalue() {
+    let sum = 0;
+    for (const card of this.hand) {
+      sum += card.value;
+    }
+    return sum;
+  }
+
+  resetHand() {
+    this.hand = [];
+    this.handvalue = 0;
+  }
+
+  isBust() {
+    if (this.handvalue > 21) {
+      return true;
     }
   }
 }
