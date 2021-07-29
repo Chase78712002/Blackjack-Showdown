@@ -28,6 +28,7 @@ async function validateNewUser (req, res, next) {
   }
   next();
 }
+
 async function isUsernameUnique (req, res, next) {
   const {data: {username} ={}} = req.body;
   const data = await service.findUsername(username);

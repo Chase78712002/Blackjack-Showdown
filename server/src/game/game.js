@@ -43,7 +43,7 @@ class Deck {
         if (values[j] == 'Ace') {
           numVal = 11;
         } else if (values[j].length > 3) {
-          numVal = 11;
+          numVal = 10;
         } else {
           numVal = values[j];
         }

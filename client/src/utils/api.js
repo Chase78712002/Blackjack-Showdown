@@ -40,7 +40,7 @@ export async function loginUser(data) {
   axios
   .put(`${API_BASE_URL}/users/login`, {data})
   .then((res) => {
-    console.log('logged in?')
+    console.log('logged in')
     console.log(res.data)
   }).catch((error) => {
     console.error(error.stack)
