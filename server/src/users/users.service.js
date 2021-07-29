@@ -7,6 +7,13 @@ async function getUsers() {
 }
 
 
+async function findUser(email) {
+  return knex(tableName)
+    .select("*")
+    .where({ email })
+}
+
+
 async function findUsername(username) {
   return knex(tableName)
     .select("*")
@@ -22,6 +29,7 @@ async function create(user) {
 
 module.exports = {
   create,
+  findUser,
   findUsername,
   getUsers
 }

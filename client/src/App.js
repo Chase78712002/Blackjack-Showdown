@@ -1,6 +1,5 @@
 import './App.css';
-import { Button } from './components/atoms/button/Button';
-import Login from './components/molecules/login_form/LoginForm';
+import LoginPage from './pages/LoginPage';
 import CreateUserPage from "./pages/CreateUserPage";
 
 
@@ -8,8 +7,7 @@ function App() {
   return (
     <>
     {/* <CreateUserPage /> */}
-    <Login />
-    <Button variant='pixel' backgroundColor='red'>Login</Button>
+    <LoginPage />
     </>
   );
 }

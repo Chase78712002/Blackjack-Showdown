@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 const API_BASE_URL =
   process.env.REACT_APP_API_BASE_URL || "http://localhost:8080";
 
@@ -32,3 +34,15 @@ export async function postUser(reqBody, signal) {
     const url = new URL(`${API_BASE_URL}/users/`);
     return await fetchJson(url, { method: 'POST', headers, signal, body: JSON.stringify({data: reqBody})}, [])
   }
+
+
+export async function loginUser(data) {
+  axios
+  .put(`${API_BASE_URL}/users/login`, {data})
+  .then((res) => {
+    console.log('logged in?')
+    console.log(res.data)
+  }).catch((error) => {
+    console.error(error.stack)
+  })  
+}

@@ -47,7 +47,25 @@ async function getUsers(req, res) {
   res.status(200).json({data})
 }
 
+
+const login = (req, res) => {
+  const {data: {email, password} = {}} = req.body;
+  service.findUser(email)
+  .then((user) => {
+    if(bcrypt.compareSync(password, user[0].password)){
+      // send user info without password for security
+      const {email, username, profile_img_url, coins} = user[0]
+      res.send({email, username, profile_img_url, coins})
+      return
+    }
+    return null
+  }).catch(e => res.send(e))
+
+  }
+
+
 module.exports = {
   createUser : [validateNewUser, asyncErrorBoundary(isUsernameUnique), asyncErrorBoundary(createUser)], 
-  getUsers: [asyncErrorBoundary(getUsers)]
+  getUsers: [asyncErrorBoundary(getUsers)],
+  login
 }
