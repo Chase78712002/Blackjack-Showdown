@@ -1,10 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const bcrypt = require('bcrypt');
+const controller = require("./users.controller");
 
-module.exports = () => {
-  router.get("/", (req, res) => {
-    res.send('User root!');
-    return;
-  })
-}
+// /users/
+router.get("/users/", controller.getUsers)
+
+module.exports = router;
+

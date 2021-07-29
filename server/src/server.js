@@ -10,14 +10,14 @@ const knex = require('./db/connection');
 
 // //Routes
 const usersRoutes = require('./users/users.router');
-// // const apiRoutes = require('');
+const apiRoutes = require('./api/apiRoutes');
 
 const listener = () => {
   console.log(`Listening on Port ${PORT}`);
 }
 
 
-// // Knex database
+// // knex database
 
 knex.migrate
   .latest()
@@ -31,8 +31,8 @@ knex.migrate
   });
 
 // resource routes
-app.use("/users", usersRoutes);
-// app.use('/api', apiRoutes(knex));
+// app.use("/users", usersRoutes);
+// app.use("/api", apiRoutes);
 
 app.get("/", (req, res) => {
   res.send('Root')
