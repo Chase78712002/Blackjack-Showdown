@@ -23,7 +23,7 @@ app.use(express.json());
 
 
 app.use("/users", usersRouter);
-app.user("/api", apiRouter)
+app.use("/api", apiRouter)
 
 app.use(notFound);
 app.use(errorHandler);

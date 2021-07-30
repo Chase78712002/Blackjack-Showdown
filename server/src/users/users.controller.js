@@ -60,7 +60,7 @@ const login = (req, res) => {
       const {email, username, profile_img_url, coins} = user[0]
       const userObj = {email, username, profile_img_url, coins}
       const token = jwt.sign({user: username}, ACCESS_TOKEN_SECRET, {
-        expiresIn: 300;
+        expiresIn: 300
       })
       res.json({user: userObj, token})
       return
