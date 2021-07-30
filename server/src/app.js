@@ -22,9 +22,6 @@ app.use(cors());
 app.use(express.json());
 
 
-// //Routes
-const usersRoutes = require('./users/users.router');
-//const apiRoutes = require('./api/apiRoutes');
 
 app.use("/users", usersRouter);
 
