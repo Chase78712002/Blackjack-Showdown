@@ -1,6 +1,8 @@
 const asyncErrorBoundary = require("../errors/asyncErrorBoundary");
 const service = require("./users.service");
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+const {ACCESS_TOKEN_SECRET} = process.env
 
 async function validateNewUser (req, res, next) {
   const {data: {username, password, email} = {}} = req.body;
@@ -54,16 +56,19 @@ const login = (req, res) => {
   service.findUser(email)
   .then((user) => {
     if(bcrypt.compareSync(password, user[0].password)){
-      // send user info without password for security
+      // send user info without password for security and access token
       const {email, username, profile_img_url, coins} = user[0]
-      res.send({email, username, profile_img_url, coins})
+      const userObj = {email, username, profile_img_url, coins}
+      const token = jwt.sign({user: username}, ACCESS_TOKEN_SECRET, {
+        expiresIn: 300;
+      })
+      res.json({user: userObj, token})
       return
     }
     return null
   }).catch(e => res.send(e))
 
   }
-
 
 module.exports = {
   createUser : [validateNewUser, asyncErrorBoundary(isUsernameUnique), asyncErrorBoundary(createUser)], 
