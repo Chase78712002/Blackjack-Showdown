@@ -42,7 +42,13 @@ export async function loginUser(data) {
   .then((res) => {
     console.log('logged in')
     console.log(res.data)
+    localStorage.setItem('currentUser', JSON.stringify(res.data))
+    return res.data
   }).catch((error) => {
     console.error(error.stack)
   })  
+}
+
+export async function logout(data){
+  localStorage.removeItem('currentUser')
 }
