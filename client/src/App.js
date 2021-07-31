@@ -31,6 +31,7 @@ function App() {
           <CreateUserPage />
           <LoginPage updateUser={updateUser} />
           {state.currentUser && `current user is ${state.currentUser.username}`}
+          <br />
           <Link to='/game'>
             <Button variant='pixel'>Game starts</Button>
           </Link>
