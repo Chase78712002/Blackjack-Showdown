@@ -95,14 +95,16 @@ class Game {
       this.win(this.player2);
   }
   nextRound(tie = false){
-    this.roundCount++;
+    
     this.player1.resetHand(); this.player2.resetHand();
     if(tie){
       let previousPot = this.rounds[this.roundCount].pot;
+      this.roundCount++;
       this.rounds.push(new Round(this.roundCount), previousPot, 2);
       this.placeBet(this.player1, this.rounds[this.roundCount].pot);
     }
     else{
+      this.roundCount++;
       this.rounds.push(new Round(this.roundCount));
     }
   }
