@@ -1,108 +1,110 @@
+const {Card, Deck} = require("./deck");
+const  Player  = require("./player");
+const AIPlayer = require("./aiplayer")
+const Round = require("./round");
+
+
 class Game {
-  constructor(id) {
+  constructor(id, player1 = "singleplayer", player2 = "computer") {
     this.id = id;
+    this.deck = new Deck();
+    this.deck.shuffle();
+    this.roundCount = 0;
+    this.rounds = [new Round(this.roundCount)];
+    this.useAI = false;
+    this.turn = true;
+    this.player1 = new Player(player1, this);
+    if (player2 === "computer"){
+      this.useAI = true;
+      this.player2 = new AIPlayer(player2, this);
+    }else
+      this.player2 = new Player(player2);
   }
-
-  //players
-  //deck
-  //turn
-  //bet/pot
-}
-
-class Card {
-  constructor(name, suit, value) {
-    this.name = name;
-    this.suit = suit;
-    this.value = value;
+  dealCards() {
+    console.log("DEAL");
+    this.hit(this.player1);
+    this.hit(this.player1);
+    this.hit(this.player2);
+    this.hit(this.player2);
+    console.log("===============");
   }
-}
-
-class Deck {
-  constructor() {
-    this.cards = [];
-    this.cardsBuilder();
+  hit(player) {
+    console.log("HIT")
+      player.addCard(this.deck.draw());
+      this.evaluateHand(player);
+    
   }
-
-  get remaining() {
-    return this.cards.length;
+  evaluateHand(player) {
+   // if(player.handValue()[1] != player.handValue()[0]){
+      if(player.handValue()[2] > 21)
+        this.bust(player);
+      else if(player.handValue()[2] === 21)
+        this.win(player); 
+      else if(player.handValue()[2] === 21)
+        this.win(player);
+    //}
+    // else {
+    //   if(player.handValue()[0] > 21)
+    //     this.bust(player);
+    //   else if(player.handValue()[0] === 21)
+    //     this.win(player);
+    // }
   }
-
-  shuffle() {
-    for (let i = this.cards.length - 1; i > 0; i--) {
-      let j = Math.floor(Math.random() * (i + 1));
-      const temp = this.cards[i];
-      this.cards[i] = this.cards[j];
-      this.cards[j] = temp;
+  win(player) {
+    console.log(`${player.name} wins!`);
+    this.nextRound();
+  }
+  tie() {
+    console.log(`Its a tie!`);
+    this.nextRound(true);
+  }
+  bust(player) {
+    console.log("BUST!! Player:", player.name);
+    if(player.name == this.player1.name)
+      this.win(this.player2);
+    else
+      this.win(this.player1);
+  }
+  placeBet(player, amount) {
+    if(this.rounds[this.roundCount].betCount === 2){
+      this.dealCards();
     }
-  }
-
-  cardsBuilder() {
-    const values = ['Ace', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'Jack', 'Queen', 'King'];
-    const suits = ['Diamonds', 'Clubs', 'Hearts', 'Spades'];
-
-    for (let i = 0; i < suits.length; i++) {
-      for (let j = 0; j < values.length; j++) {
-        let numVal = 0;
-        let name = `${values[j]} of ${suits[i]}}`;
-
-        if (values[j] == 'Ace') {
-          numVal = 11;
-        } else if (values[j].length > 3) {
-          numVal = 10;
-        } else {
-          numVal = values[j];
-        }
-
-        this.cards.push(new Card(name, suits[i], numVal));
+    else {
+      this.rounds[this.roundCount].pot += amount;
+      this.rounds[this.roundCount].betCount++;
+      if(this.useAI){
+        this.placeBet(this.player2, amount);
       }
     }
   }
-}
-
-class Player {
-  constructor() {
-    this.hand = [];
-    this.handvalue = 0;
-  }
-
-  get hand() {
-    return this.hand;
-  }
-  get handvalue() {
-    let sum = 0;
-    for (const card of this.hand) {
-      sum += card.value;
+  stay(player){
+    player.canPlay = false;
+    if(!this.player1.canPlay && !this.player2.canPlay)
+      this.compareHands();
+    else if(this.useAI){
+      this.player2.chooseMove();
     }
-    return sum;
   }
-
-  countAce() {
-    let count = 0;
-    for (const card of this.hand) {
-      if (card.name === 'Ace') {
-        count += 1;
-      }
+  compareHands(){
+    console.log(`Player 1 hand:${this.player1.handValue()[2]} /// Player 2 hand:${this.player2.handValue()[2]}`)
+    if(this.player1.handValue()[2] > this.player2.handValue()[2])
+      this.win(this.player1);
+    else if(this.player1.handValue()[2] === this.player2.handValue()[2])
+      this.tie()
+    else
+      this.win(this.player2);
+  }
+  nextRound(tie = false){
+    this.roundCount++;
+    this.player1.resetHand(); this.player2.resetHand();
+    if(tie){
+      let previousPot = this.rounds[this.roundCount].pot;
+      this.rounds.push(new Round(this.roundCount), previousPot, 2);
+      this.placeBet(this.player1, this.rounds[this.roundCount].pot);
     }
-    return count;
-  }
-
-  adjustAceHandscore() {
-    for (const ace in this.countAce) {
-      if (this.handscore < 12) {
-        self.handscore += 10;
-      }
-    }
-    return this.handscore;
-  }
-
-  resetHand() {
-    this.hand = [];
-    this.handvalue = 0;
-  }
-
-  isBust() {
-    if (this.handvalue > 21) {
-      return true;
+    else{
+      this.rounds.push(new Round(this.roundCount));
     }
   }
 }
+module.exports = Game;
