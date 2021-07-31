@@ -1,24 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { Button } from '../../components/atoms/button/Button';
 import './Game.css';
 import axios from 'axios';
-export default function Game(props) {
+import ioClient from 'socket.io-client';
 
+const ENDPOINT = "http://localhost:8080/"
+
+export default function Game(props) {
+    const [response, setResponse] = useState('');
+
+    useEffect(() => {
+        const socket = ioClient(ENDPOINT, {
+            withCredentials: true,
+            extraHeaders: {
+                "my-custom-header": "abcd"
+            }
+        });
+        // socket.on("")
+    }, [])
 
     const drawCard = () => {
         //send axios request to server
         // this will be replaced by socket.io
-        axios.post('http://localhost:8080/api/hit', {hi:'I wanna draw a card!'})
-            .then(res => {
-                console.log('this is the response from drawcard', res);
-            })
+
     }
 
     const stand = () => {
         //send axios request to server
         // this will be replaced by socket.io
-        axios.post('http://localhost:8080/api/stand', {hi:'I stand!'})
+        axios.post('http://localhost:8080/api/stand', { hi: 'I stand!' })
             .then(res => {
                 console.log('this is the response from stand', res);
             })
@@ -35,7 +46,7 @@ export default function Game(props) {
             </div>
 
             <div className='table-container--top'>
-                Thi is top
+                <h2>---Dealer---</h2>
             </div>
 
             <div className="table-container--mid">
@@ -53,6 +64,11 @@ export default function Game(props) {
             </div>
 
             <div className="table-container--bottom">
+                <h2>---Player---</h2>
+                <div className="container--playerHand">
+                    <div>CARD 1</div>
+                    <div>CARD 2</div>
+                </div>
                 <Button
                     variant="pixel"
                     onClick={stand}
@@ -62,7 +78,7 @@ export default function Game(props) {
             </div>
 
             <div className="bottombar">
-                <p>Coins</p>
+                <h1>Coins</h1>
             </div>
 
         </div>
