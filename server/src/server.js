@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 // const { PORT = 5000 } = process.env;
+=======
+const PORT = process.env.PORT || 5000;
+>>>>>>> Stashed changes
 
 // const app = require("./app");
 // const knex = require("./db/connection");
