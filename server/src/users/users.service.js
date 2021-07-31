@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-=======
 const knex = require("../db/connection");
 const tableName = "users";
 
@@ -7,6 +5,14 @@ const tableName = "users";
 async function getUsers() {
   return knex(tableName).select("*")
 }
+
+
+async function findUser(email) {
+  return knex(tableName)
+    .select("*")
+    .where({ email })
+}
+
 
 async function findUsername(username) {
   return knex(tableName)
@@ -23,7 +29,7 @@ async function create(user) {
 
 module.exports = {
   create,
+  findUser,
   findUsername,
   getUsers
 }
->>>>>>> Stashed changes

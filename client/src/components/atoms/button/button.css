@@ -1,0 +1,57 @@
+.button {
+  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  border: 0;
+  border-radius: 3em;
+  position: relative;
+  width: 200px;
+  height: 60px;
+  color: #fff;
+  text-decoration: none;
+  padding: 150px 20px;
+  text-transform: uppercase;
+  transition: 0.2s;
+}
+.button--primary {
+  color: white;
+  background-color: #1ea7fd;
+}
+.button--secondary {
+  color: #333;
+  background-color: transparent;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;
+}
+.button--pixel {
+  background-color: black;
+}
+
+.button--pixel:hover {
+  background: rgb(114 13 236) url(../../assets/pixel2.png);
+  background-size: 200px;
+  transition-delay: 1s;
+  padding: 20px 15px;
+  animation: pixel 1s steps(8) forwards;
+}
+@keyframes pixel {
+  0% {
+    background-position-y:0px;
+  }
+  100% {
+    background-position-y: -540px;
+  }
+  
+}
+.button--small {
+  font-size: 12px;
+  width: 70px;
+  padding: 10px 16px;
+  margin: 6px;
+}
+.button--medium {
+  font-size: 14px;
+  padding: 11px 20px;
+}
+.button--large {
+  font-size: 16px;
+  padding: 12px 24px;
+}
