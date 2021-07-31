@@ -43,7 +43,9 @@
 }
 .button--small {
   font-size: 12px;
+  width: 70px;
   padding: 10px 16px;
+  margin: 6px;
 }
 .button--medium {
   font-size: 14px;
