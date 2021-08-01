@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 
 import { useState } from 'react';
 import { logout } from './utils/api';
+import { SocketProvider } from './utils/SocketProvider';
 
 function App() {
   const [state, setState] = useState({ currentUser: {} });
@@ -17,31 +18,34 @@ function App() {
   };
 
   return (
-    <Router>
-      <Switch>
-        <Route exact path='/'>
-          <button
-            onClick={() => {
-              logout(updateUser);
-            }}
-          >
-            Logout
-          </button>
+    <SocketProvider>
+      <Router>
+        <Switch>
+          <Route exact path='/'>
+            <button
+              onClick={() => {
+                logout(updateUser);
+              }}
+            >
+              Logout
+            </button>
 
-          <CreateUserPage />
-          <LoginPage updateUser={updateUser} />
-          {state.currentUser && `current user is ${state.currentUser.username}`}
-          <br />
-          <Link to='/game'>
-            <Button variant='pixel'>Game starts</Button>
-          </Link>
-        </Route>
+            <CreateUserPage />
+            <LoginPage updateUser={updateUser} />
+            {state.currentUser && `current user is ${state.currentUser.username}`}
+            <br />
+            <Link to='/game'>
+              <Button variant='pixel'>Game starts</Button>
+            </Link>
+          </Route>
 
-        <Route path='/game'>
-          <Game />
-        </Route>
-      </Switch>
-    </Router>
+          <Route path='/game'>
+
+            <Game />
+          </Route>
+        </Switch>
+      </Router>
+    </SocketProvider>
   );
 }
 

@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import io from 'socket.io-client'
+
 const SocketContext = React.createContext()
 
 export function useSocket() {
@@ -7,13 +8,18 @@ export function useSocket() {
 }
 
 export function SocketProvider({ id, children }) {
-
     const [socket, setSocket] = useState()
 
     useEffect(() => {
         const newSocket = io(
             'http://localhost:8080',
-            { query: { id } }
+            {
+                withCredentials: true,
+                extraHeaders: {
+                    "my-custom-header": "abcd"
+                },
+                query: { id }
+            }
         )
         setSocket(newSocket)
 
@@ -26,3 +32,6 @@ export function SocketProvider({ id, children }) {
         </SocketContext.Provider>
     )
 }
+
+
+

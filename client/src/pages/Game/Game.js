@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { Button } from '../../components/atoms/button/Button';
 import './Game.css';
 import axios from 'axios';
-import ioClient from 'socket.io-client';
+import { useSocket } from '../../utils/SocketProvider';
+// import ioClient from 'socket.io-client';
 
 const ENDPOINT = "http://localhost:8080/"
 
@@ -13,32 +14,36 @@ export default function Game(props) {
         suit: "suit",
         value: "value"
     })
+    const socket = useSocket();
+    // const socketRef = useRef();
+
+    // socketRef.current = ioClient(ENDPOINT, {
+    //     withCredentials: true,
+    //     extraHeaders: {
+    //         "my-custom-header": "abcd"
+    //     }
+    // });
+    // useEffect(() => {
+
+
+    //     return () => socketRef.current.disconnect();
+
+    // }, [card])
+
     
-    const socketRef = useRef();
 
-    socketRef.current = ioClient(ENDPOINT, {
-        withCredentials: true,
-        extraHeaders: {
-            "my-custom-header": "abcd"
-        }
-    });
-    useEffect(() => {
-
-
-        return () => socketRef.current.disconnect();
-
-    }, [card])
+    console.log('socket in game.js: ',socket);
 
     const drawCard = () => {
         //send axios request to server
         // this will be replaced by socket.io
-        socketRef.current.emit('hit', {
+        socket.emit('hit', {
             message: 'draw a card'
         })
     }
 
     // Listening for hit data from server
-    socketRef.current.on('hit', (data) => {
+    socket.on('hit', (data) => {
         console.log('card data received from the server', data)
         setCard(prev => data)
     })
