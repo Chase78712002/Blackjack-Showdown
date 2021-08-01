@@ -5,10 +5,17 @@ import './button.css';
 /**
  * Primary UI component for user interaction
  */
-export const Button = ({ variant, backgroundColor, size, children, onClick}) => {
+export const Button = ({
+  variant,
+  backgroundColor,
+  size,
+  children,
+  type,
+  onClick
+}) => {
   return (
     <button
-      type="button"
+      type={type}
       className={['button', `button--${size}`, `button--${variant}`].join(' ')}
       style={backgroundColor && { backgroundColor }}
       onClick={onClick}
@@ -38,12 +45,14 @@ Button.propTypes = {
   /**
    * Optional click handler
    */
-  onClick: PropTypes.func,
+  type: PropTypes.string,
+
+  onClick: PropTypes.func
 };
 
 Button.defaultProps = {
   backgroundColor: null,
   primary: false,
-  size: 'medium',
+  size: 'medium'
   // onClick: undefined,
 };

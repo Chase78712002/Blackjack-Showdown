@@ -1,4 +1,4 @@
-import '../App.css';
+import './LoginForm.css';
 import { useState } from 'react';
 import { Button } from '../components/atoms/button/Button';
 import ErrorAlert from '../atoms/ErrorAlert';
@@ -27,11 +27,10 @@ export default function LoginForm(props) {
 
   return (
     <div>
-      <h1>Login Form</h1>
       <ErrorAlert error={userError} />
       <form onSubmit={handleSubmit}>
         <label htmlFor='email'>
-          Enter email:
+          Email:
           <input
             id='email'
             type='email'
@@ -40,8 +39,9 @@ export default function LoginForm(props) {
             value={formData.email}
           />
         </label>
+        <br />
         <label htmlFor='password'>
-          Enter Your password:
+          Password:
           <input
             id='password'
             type='text'
@@ -50,8 +50,10 @@ export default function LoginForm(props) {
             value={formData.password}
           />
         </label>
-        {/* <Button type="submit" variant='pixel' backgroundColor='blue'>Login</Button> */}
-        <button type='submit'>Submit</button>
+        <br />
+        <Button type='submit' variant='pixel' backgroundColor='blue'>
+          Login
+        </Button>
       </form>
     </div>
   );

@@ -49,7 +49,7 @@ export async function loginUser(data, updateUser) {
   axios
     .put(`${API_BASE_URL}/users/login`, { data })
     .then((res) => {
-      updateUser(res.data.user);
+      updateUser(res.data.user, true);
       console.log('logged in');
       localStorage.setItem('accessToken', res.data.accessToken);
       return res.data;
@@ -65,5 +65,5 @@ export function getAuthToken() {
 
 export function logout(updateUser) {
   localStorage.removeItem('accessToken');
-  updateUser({ currentUser: {} });
+  updateUser({ currentUser: {} }, false);
 }
