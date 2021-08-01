@@ -50,7 +50,7 @@ export async function loginUser(data, updateUser) {
     .then((res) => {
       updateUser(res.data.user);
       console.log('logged in');
-      console.log(res.data);
+      localStorage.setItem('accessToken', res.data.accessToken);
       return res.data;
     })
     .catch((error) => {
@@ -58,7 +58,11 @@ export async function loginUser(data, updateUser) {
     });
 }
 
+export function getAuthToken() {
+  localStorage.getItem('accessToken');
+}
+
 export function logout(updateUser) {
-  localStorage.removeItem('currentUser');
+  localStorage.removeItem('accessToken');
   updateUser({ currentUser: {} });
 }

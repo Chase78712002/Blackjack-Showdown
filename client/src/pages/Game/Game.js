@@ -9,7 +9,6 @@ import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { Button } from '../../components/atoms/button/Button';
 import './Game.css';
 import { SocketContext } from '../../utils/SocketProvider';
-import ioClient from 'socket.io-client';
 
 export default function Game(props) {
   const [response, setResponse] = useState('');
