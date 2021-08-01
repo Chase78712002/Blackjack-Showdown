@@ -94,29 +94,16 @@ class Game {
       //return this.win(this.player2);
     }
   }
-<<<<<<< HEAD
   nextRound(tie = false) {
-    this.roundCount++;
     this.player1.resetHand();
     this.player2.resetHand();
     if (tie) {
-=======
-  nextRound(tie = false){
-    
-    this.player1.resetHand(); this.player2.resetHand();
-    if(tie){
->>>>>>> 1f482b19c80024c36d47782b5817ac77250bd65e
       let previousPot = this.rounds[this.roundCount].pot;
       this.roundCount++;
       this.rounds.push(new Round(this.roundCount), previousPot, 2);
       this.placeBet(this.player1, this.rounds[this.roundCount].pot);
-<<<<<<< HEAD
     } else {
-=======
-    }
-    else{
       this.roundCount++;
->>>>>>> 1f482b19c80024c36d47782b5817ac77250bd65e
       this.rounds.push(new Round(this.roundCount));
     }
   }
