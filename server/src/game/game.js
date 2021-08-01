@@ -3,7 +3,6 @@ const  Player  = require("./player");
 const AIPlayer = require("./aiplayer")
 const Round = require("./round");
 
-
 class Game {
   constructor(id, player1 = "singleplayer", player2 = "computer") {
     this.id = id;
@@ -31,68 +30,64 @@ class Game {
   hit(player) {
     console.log("HIT")
       player.addCard(this.deck.draw());
-      this.evaluateHand(player);
-    
+      return this.evaluateHand(player);
   }
   evaluateHand(player) {
    // if(player.handValue()[1] != player.handValue()[0]){
       if(player.handValue()[2] > 21)
-        this.bust(player);
+        return this.bust(player);
       else if(player.handValue()[2] === 21)
-        this.win(player); 
+        return this.win(player); 
       else if(player.handValue()[2] === 21)
-        this.win(player);
-    //}
-    // else {
-    //   if(player.handValue()[0] > 21)
-    //     this.bust(player);
-    //   else if(player.handValue()[0] === 21)
-    //     this.win(player);
-    // }
+        return this.win(player);
+    return "INPLAY";
   }
   win(player) {
     console.log(`${player.name} wins!`);
-    this.nextRound();
+    //this.nextRound();
+    return "WIN"
   }
   tie() {
     console.log(`Its a tie!`);
-    this.nextRound(true);
+    //this.nextRound(true);
   }
   bust(player) {
     console.log("BUST!! Player:", player.name);
-    if(player.name == this.player1.name)
-      this.win(this.player2);
-    else
-      this.win(this.player1);
+    // if(player.name == this.player1.name)
+    //   this.win(this.player2);
+    // else
+    //   this.win(this.player1);
+    return "LOSE"
   }
   placeBet(player, amount) {
-    if(this.rounds[this.roundCount].betCount === 2){
-      this.dealCards();
-    }
-    else {
+    // if(this.rounds[this.roundCount].betCount === 2){
+    //   this.dealCards();
+    // }
+    // else {
       this.rounds[this.roundCount].pot += amount;
       this.rounds[this.roundCount].betCount++;
-      if(this.useAI){
-        this.placeBet(this.player2, amount);
+      if(this.useAI && this.rounds[this.roundCount].betCount%2 == 1){
+        this.player2.bet(amount);
       }
-    }
+    // }
   }
-  stay(player){
-    player.canPlay = false;
+  stay(){
     if(!this.player1.canPlay && !this.player2.canPlay)
-      this.compareHands();
+      return this.compareHands();
     else if(this.useAI){
-      this.player2.chooseMove();
+      return this.player2.chooseMove();
     }
   }
   compareHands(){
     console.log(`Player 1 hand:${this.player1.handValue()[2]} /// Player 2 hand:${this.player2.handValue()[2]}`)
     if(this.player1.handValue()[2] > this.player2.handValue()[2])
-      this.win(this.player1);
+      return this.win(this.player1);
     else if(this.player1.handValue()[2] === this.player2.handValue()[2])
-      this.tie()
-    else
-      this.win(this.player2);
+      return this.tie()
+    else{
+      return "LOSE"
+      //return this.win(this.player2);
+    }
   }
   nextRound(tie = false){
     this.roundCount++;

@@ -7,43 +7,74 @@ import React, {
 } from 'react';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { Button } from '../../components/atoms/button/Button';
+import Card from '../../atoms/Card'
 import './Game.css';
 import { SocketContext } from '../../utils/SocketProvider';
+import GameEnd from '../../molecules/GameEnd';
 
-export default function Game(props) {
+export default function Game({ roomNumber = 0, currentUser }) {
   const [response, setResponse] = useState('');
-  const [card, setCard] = useState({
-    suit: 'suit',
-    value: 'value'
-  });
+  const [room, setRoom] = useState(roomNumber);
+  const [user, setUser] = useState(currentUser);
+  const [player1Hand, setPlayer1Hand] = useState([]);
+  const [player2Hand, setPlayer2Hand] = useState([]);
+  const [gameState, setGameState] = useState("INPLAY")
+  const [initialBetPlaced, setInitialBetPlaced] = useState(false);
 
   const socket = useContext(SocketContext);
 
-  const drawCard = useCallback(() => {
-    console.log(`hit sent from socket id: ${socket.id}`);
-    socket.emit('hit', {
-      message: 'draw a card'
-    });
-  }, []);
-
+  
+  // #region sockets
   useEffect(() => {
     // Listening for hit data from server
-    socket.on('hit', (data) => {
-      console.log('card data received from the server', data);
-      setCard((prev) => data);
-    });
+    //implement check if newRoom or if game is currently going
+    socket.emit('newGame', room);
 
-    socket.on('stand', (data) => {
-      console.log('card data received from the server', data);
-      setCard((prev) => data);
+    //placebet Implementation
+    socket.on('betPlaced', () => {
+      console.log("Bet Successful");
+      if(!initialBetPlaced){
+        setInitialBetPlaced(true);
+        socket.emit('deal', room);
+      }
+    })
+    socket.on('deal', (hand1, hand2) => {
+      setPlayer1Hand(hand1);
+      setPlayer2Hand(hand2);
+    });
+    socket.on('hit', (hand, handState) => {
+      setPlayer1Hand(hand);
+      setGameState(handState);
+    });
+    socket.on('dealerHit', (hand) => {
+      setPlayer2Hand(hand);
+    });
+    socket.on('stand', (gameState) => {
+      setGameState(gameState);
     });
   }, [socket]);
-
-  const stand = useCallback(() => {
-    console.log(`hit sent from socket id: ${socket.id}`);
-    socket.emit('stand', { message: 'stand' });
-  }, []);
-
+  // #endregion
+  // #region playerActions
+  const drawCard = () => {
+    console.log("Room on hit", room)
+    socket.emit('hit', room);
+  }
+  const placeBet = () =>{
+    //TODO call api function to deduct bet from user account
+    socket.emit('bet', 10, room);
+  }
+  const stand =() => {
+    socket.emit('stand', room);
+  }
+  const nextRound = () => {
+    //TODO add funds to players accounts
+    setInitialBetPlaced(false);
+    setPlayer1Hand([]);
+    setPlayer2Hand([]);
+    setGameState("INPLAY");
+    socket.emit('nextRound', room);
+  }
+  // #endregion
   return (
     <div className='table-background'>
       <div className='topbar'>
@@ -54,9 +85,13 @@ export default function Game(props) {
           </Button>
         </Link>
       </div>
-
+      {gameState != "INPLAY" ? <GameEnd gameState={gameState} nextRound={nextRound} /> : ""}
       <div className='table-container--top'>
         <h2>---Dealer---</h2>
+        <h3>Hand:</h3>
+        {player2Hand.map((card) =>{
+          return <Card name={card.name} />
+        })}
       </div>
 
       <div className='table-container--mid'>
@@ -67,16 +102,18 @@ export default function Game(props) {
         </div>
         <div className='mid--pot'>
           <span id='pot'></span>
+          <Button variant='pixel' onClick={placeBet}>
+            Place Bet
+          </Button>
         </div>
       </div>
 
       <div className='table-container--bottom'>
         <h2>---Player---</h2>
         <div className='container--playerHand'>
-          <div>
-            {card.value} of {card.suit}{' '}
-          </div>
-          <div>CARD 2</div>
+          {player1Hand.map((card) =>{
+            return <Card name={card.name} />
+          })}
         </div>
         <Button variant='pixel' onClick={stand}>
           Stand

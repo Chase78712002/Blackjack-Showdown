@@ -6,13 +6,11 @@ class AIPlayer extends Player{
         super(name, game);
     }
     chooseMove() {
-        if(this.canPlay){
-                if(this.handValue()[2] >= 17)
-                    this.game.stay(this)
-                else{
-                        this.game.hit(this);
-                        this.chooseMove();
-                }
+        if(this.handValue()[2] >= 17){
+            return this.game.stay(this)
+        }
+        else{
+            return "COMPTURN"
         }
     }
 }

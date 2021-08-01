@@ -40,7 +40,7 @@ function App() {
           </Route>
 
           <Route path='/game'>
-            <Game />
+            <Game room={0} currentUser={state.currentUser} />
           </Route>
         </Switch>
       </Router>

@@ -78,6 +78,13 @@ class Player {
       else
         console.log("Cant Bet! You're Broke!");
     }
+    hit(){
+      return this.game.hit(this);
+    }
+    stay(){
+      this.canPlay = false;
+      return this.game.stay(this);
+    }
   }
 
   module.exports = Player;
