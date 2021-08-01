@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { Button } from '../../components/atoms/button/Button';
 import './Game.css';
@@ -9,22 +9,40 @@ const ENDPOINT = "http://localhost:8080/"
 
 export default function Game(props) {
     const [response, setResponse] = useState('');
+    const [card, setCard] = useState({
+        suit: "suit",
+        value: "value"
+    })
+    
+    const socketRef = useRef();
 
+    socketRef.current = ioClient(ENDPOINT, {
+        withCredentials: true,
+        extraHeaders: {
+            "my-custom-header": "abcd"
+        }
+    });
     useEffect(() => {
-        const socket = ioClient(ENDPOINT, {
-            withCredentials: true,
-            extraHeaders: {
-                "my-custom-header": "abcd"
-            }
-        });
-        // socket.on("")
-    }, [])
+
+
+        return () => socketRef.current.disconnect();
+
+    }, [card])
 
     const drawCard = () => {
         //send axios request to server
         // this will be replaced by socket.io
-
+        socketRef.current.emit('hit', {
+            message: 'draw a card'
+        })
     }
+
+    // Listening for hit data from server
+    socketRef.current.on('hit', (data) => {
+        console.log('card data received from the server', data)
+        setCard(prev => data)
+    })
+
 
     const stand = () => {
         //send axios request to server
@@ -66,7 +84,7 @@ export default function Game(props) {
             <div className="table-container--bottom">
                 <h2>---Player---</h2>
                 <div className="container--playerHand">
-                    <div>CARD 1</div>
+                    <div>{card.value} of {card.suit} </div>
                     <div>CARD 2</div>
                 </div>
                 <Button
