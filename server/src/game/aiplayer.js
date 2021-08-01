@@ -1,18 +1,19 @@
-const  Player  = require("./player");
-const Game = require("./game");
+const Player = require('./player');
+const Game = require('./game');
 
-class AIPlayer extends Player{
-    constructor(name, game) {
-        super(name, game);
+class AIPlayer extends Player {
+  constructor(name, game) {
+    super(name, game);
+  }
+  chooseMove() {
+    console.log('chooseMove called handvalue:', this.handValue[2]);
+    if (this.handValue()[2] >= 17) {
+      this.canPlay = false;
+      return this.stay(this);
+    } else {
+      return 'COMPTURN';
     }
-    chooseMove() {
-        if(this.handValue()[2] >= 17){
-            return this.game.stay(this)
-        }
-        else{
-            return "COMPTURN"
-        }
-    }
+  }
 }
 
 module.exports = AIPlayer;
