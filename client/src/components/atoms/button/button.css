@@ -1,5 +1,5 @@
 .button {
-  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Press Start 2P', cursive;
   font-weight: 700;
   border: 0;
   border-radius: 3em;
@@ -34,12 +34,11 @@
 }
 @keyframes pixel {
   0% {
-    background-position-y:0px;
+    background-position-y: 0px;
   }
   100% {
     background-position-y: -540px;
   }
-  
 }
 .button--small {
   font-size: 12px;

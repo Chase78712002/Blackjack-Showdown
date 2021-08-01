@@ -21,6 +21,7 @@ function App() {
       <Router>
         <Switch>
           <Route exact path='/'>
+            <p>BlackJack</p>
             <button
               onClick={() => {
                 logout(updateUser);
