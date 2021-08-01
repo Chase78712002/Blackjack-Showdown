@@ -1,9 +1,10 @@
 class Card {
-  constructor(name, suit, value, altValue = 0) {
+  constructor(name, suit, value, imgUrl, altValue = 0) {
     this.name = name;
     this.suit = suit;
     this.value = value;
     this.altValue = altValue;
+    this.imgUrl = imgUrl;
   }
 }
 class Deck {
@@ -30,17 +31,17 @@ class Deck {
       for (let j = 0; j < values.length; j++) {
         let numVal = 0;
         let name = `${values[j]} of ${suits[i]}`;
-        let imgURL = `./img/PlayingCards/card-${suits[i]}-${values[j]}.png`;
+        let imgUrl = `/img/PlayingCards/card-${suits[i]}-${values[j]}.png`;
 
         if (values[j] == 'Ace') {
           numVal = 11;
-          this.cards.push(new Card(name, suits[i], numVal, 1));
+          this.cards.push(new Card(name, suits[i], numVal, imgUrl, 1));
         } else if (values[j].length > 3) {
           numVal = 10;
-          this.cards.push(new Card(name, suits[i], numVal));
+          this.cards.push(new Card(name, suits[i], numVal, imgUrl));
         } else {
           numVal = values[j];
-          this.cards.push(new Card(name, suits[i], numVal));
+          this.cards.push(new Card(name, suits[i], numVal, imgUrl));
         }
       }
     }

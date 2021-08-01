@@ -100,7 +100,7 @@ export default function Game({ roomNumber = 0, currentUser }) {
         <h2>---Dealer---</h2>
         <h3>Hand:</h3>
         {player2Hand.map((card) => {
-          return <Card name={card.name} />;
+          return <Card key={card.name} card={card.name} imgUrl={card.imgUrl} />;
         })}
       </div>
 
@@ -122,7 +122,9 @@ export default function Game({ roomNumber = 0, currentUser }) {
         <h2>---Player---</h2>
         <div className='container--playerHand'>
           {player1Hand.map((card) => {
-            return <Card name={card.name} />;
+            return (
+              <Card key={Card.name} name={card.name} imgUrl={card.imgUrl} />
+            );
           })}
         </div>
         <Button variant='pixel' onClick={stand}>

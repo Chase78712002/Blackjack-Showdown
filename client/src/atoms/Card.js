@@ -1,9 +1,18 @@
-import React from "react";
+import './Card.css';
+import React from 'react';
 
-export default function Card({name}){
-    return (
-        <div>
-            <p>{name}</p>
-        </div>
-    )
+export default function Card({ name, imgUrl }) {
+  return (
+    <div>
+      <div
+        className='card'
+        style={{
+          backgroundImage: `url(${imgUrl})`,
+          backgroundSize: 'contain'
+        }}
+      ></div>
+    </div>
+  );
 }
+
+//
