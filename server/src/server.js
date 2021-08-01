@@ -8,7 +8,7 @@ const knex = require('./db/connection');
 
 const server = app.listen(PORT, () => {
   console.log(`Listening on Port ${PORT}`);
-}) 
+})
 
 // Socket setup
 const io = socket(server, {
@@ -24,6 +24,24 @@ io.on('connection', (socket) => {
   // const id = socket.handshake.query.id
   // socket.join(id)
   console.log('made socket connection! socket_id: ', socket.id)
+
+  socket.on('hit', (data) => {
+    console.log('this is the hit data from browser', data)
+    const cardA = {
+      suit: 'Spade',
+      value: 'Ace'
+    }
+
+    io.sockets.emit('hit', cardA);
+
+  })
+
+  socket.on('disconnect', socket => {
+    console.log('socket disconnected', socket.id)
+  })
+
+
+
 })
 
 
