@@ -89,9 +89,9 @@ io.on('connection', (socket) => {
   });
 });
 //if on heroku
-if(process.eventNames.NODE_ENV === "production"){
-  app.use(express.static('client/build'));
-}
+// if(process.eventNames.NODE_ENV === "production"){
+//   app.use(express.static('client/build'));
+// }
 // // knex database
 knex.migrate
   .latest()
