@@ -1,0 +1,52 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 200vh;
+  justify-content: space-evenly;
+}
+
+.back {
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 1em;
+}
+.content h1 {
+  font-size: 3em;
+  color: midnightblue;
+}
+
+.icons img {
+  margin: 1em;
+  max-height: 145px;
+}
+
+.text-block {
+  width: 50%;
+}
+
+.members {
+  display: flex;
+  max-width: 70%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.single {
+  max-width: 35%;
+}
+.single img {
+  max-width: 200px;
+}
+.single div {
+  margin: 1em;
+}
+.title {
+  font-size: large;
+}
+
+.desc {
+  font-size: small;
+}

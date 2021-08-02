@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import { SocketContext, socket } from './utils/SocketProvider';
 import { useState } from 'react';
 import Startpage from './pages/Startpage';
+import Aboutpage from './pages/About';
 
 function App() {
   const [state, setState] = useState({ currentUser: {}, isLoggedIn: false });
@@ -20,7 +21,10 @@ function App() {
         <Switch>
           <Route exact path='/'>
             <div className='main'>
-              <h1 className='main-title'>BlackJack</h1>
+              <div>
+                <h1 className='main-title'>BlackJack</h1>
+                <h1 className='main-title'>Showdown</h1>
+              </div>
               <div>
                 {state.isLoggedIn ? (
                   <Startpage
@@ -40,6 +44,9 @@ function App() {
           </Route>
           <Route path='/game'>
             <Game room={0} currentUser={state.currentUser} />
+          </Route>
+          <Route path='/about'>
+            <Aboutpage />
           </Route>
         </Switch>
       </Router>
