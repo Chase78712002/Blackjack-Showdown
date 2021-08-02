@@ -8,7 +8,7 @@ export default function LoginForm(props) {
   const { updateUser } = props;
   const initialFormState = {
     email: '',
-    password: 'password'
+    password: ''
   };
   const [formData, setFormData] = useState({ ...initialFormState });
   const [userError, setUserError] = useState(null);
@@ -33,25 +33,25 @@ export default function LoginForm(props) {
     <div>
       <ErrorAlert error={userError} />
       <form onSubmit={handleSubmit}>
-        <label htmlFor='email'>
-          Email:
+        <label for='email'>Email:
           <input
             id='email'
             type='email'
             name='email'
             onChange={handleChange}
             value={formData.email}
+            placeholder="email"
           />
         </label>
         <br />
-        <label htmlFor='password'>
-          Password:
+        <label for='password'>Password:
           <input
             id='password'
-            type='text'
+            type='password'
             name='password'
             onChange={handleChange}
             value={formData.password}
+            placeholder="password"
           />
         </label>
         <br />

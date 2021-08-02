@@ -1,11 +1,17 @@
 {
-  "name": "Blackjack-Showdown",
+  "name": "blackjackshowdown",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server/src/server.js"
+    "build": "npm -prefix client run build",
+    "preinstall": "cd ./server && npm install",
+    "install": "cd ./client && npm install",
+    "start": "npx concurrently 'npm run start:server' 'npm run start:client'",
+    "start:backend": "npm --prefix ./server start",
+    "start:client": "npm --prefix ./client start",
+    "start:dev": "npx concurrently 'npm run start:dev --prefix ./server' 'npm start --prefix ./client'",
+    "test": "npm run test:client && npm run test:backend"
   },
   "repository": {
     "type": "git",
@@ -28,8 +34,5 @@
     "morgan": "^1.10.0",
     "pg": "^8.7.1",
     "socket.io": "^4.1.3"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.12"
   }
 }

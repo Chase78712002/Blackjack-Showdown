@@ -50,7 +50,7 @@ function App() {
           </Route>
           <Route path='/register'>
             <div className='main'>
-              <CreateUserPage />
+              <CreateUserPage updateUser={updateUser}/>
             </div>
           </Route>
           <Route path='/game'>

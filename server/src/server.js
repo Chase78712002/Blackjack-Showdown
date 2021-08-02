@@ -95,7 +95,10 @@ io.on('connection', (socket) => {
     //redirectnot on game page
   });
 });
-
+//if on heroku
+if(process.eventNames.NODE_ENV === "production"){
+  app.use(express.static('client/build'));
+}
 // // knex database
 knex.migrate
   .latest()
