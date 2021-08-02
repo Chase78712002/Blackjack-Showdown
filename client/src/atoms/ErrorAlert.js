@@ -1,11 +1,7 @@
-import React from "react"
+import React from 'react';
 
 function ErrorAlert({ error }) {
-    return (
-      error && (
-        <div>Error: {error.message}</div>
-      )
-    );
-  }
-  
-  export default ErrorAlert;
+  return error && <div className='error-alert'>Error: {error.message}</div>;
+}
+
+export default ErrorAlert;
