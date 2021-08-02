@@ -30,12 +30,12 @@ class Deck {
     for (let i = 0; i < suits.length; i++) {
       for (let j = 0; j < values.length; j++) {
         let numVal = 0;
-        let name = `${values[j]} of ${suits[i]}`;
+        let name = `${values[j]}`;
         let imgUrl = `/img/PlayingCards/card-${suits[i]}-${values[j]}.png`;
 
         if (values[j] == 'Ace') {
-          numVal = 11;
-          this.cards.push(new Card(name, suits[i], numVal, imgUrl, 1));
+          numVal = 1;
+          this.cards.push(new Card(name, suits[i], numVal, imgUrl, 11));
         } else if (values[j].length > 3) {
           numVal = 10;
           this.cards.push(new Card(name, suits[i], numVal, imgUrl));

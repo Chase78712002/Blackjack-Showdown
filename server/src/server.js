@@ -61,7 +61,6 @@ io.on('connection', (socket) => {
   });
   socket.on('deal', (room) => {
     activeGames[room].dealCards();
-    console.log('state on deal is', activeGames[room].gamestate);
     socket.emit(
       'deal',
       activeGames[room].player1.hand,
@@ -96,7 +95,7 @@ io.on('connection', (socket) => {
   });
 });
 //if on heroku
-if(process.eventNames.NODE_ENV === "production"){
+if (process.eventNames.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 }
 // // knex database

@@ -59,8 +59,8 @@ class Game {
 
   tie() {
     console.log(`Its a tie!`);
+    this.gamestate = 'TIE';
     return 'TIE';
-    //this.nextRound(true);
   }
   bust(player) {
     console.log('bust called');
@@ -74,16 +74,11 @@ class Game {
     return 'LOSE';
   }
   placeBet(player, amount) {
-    // if(this.rounds[this.roundCount].betCount === 2){
-    //   this.dealCards();
-    // }
-    // else {
     this.rounds[this.roundCount].pot += amount;
     this.rounds[this.roundCount].betCount++;
     if (this.useAI && this.rounds[this.roundCount].betCount % 2 == 1) {
       this.player2.bet(amount);
     }
-    // }
   }
   stay() {
     console.log(
@@ -108,7 +103,6 @@ class Game {
     else {
       this.gamestate = 'LOSE';
       return 'LOSE';
-      //return this.win(this.player2);
     }
   }
   nextRound(tie = false) {
