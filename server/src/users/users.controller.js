@@ -52,21 +52,27 @@ async function getUsers(req, res) {
 
 const login = (req, res) => {
   const { data: { email, password } = {} } = req.body;
-  service
-    .findUser(email)
-    .then((user) => {
-      if (bcrypt.compareSync(password, user[0].password)) {
-        // send user info without password for security and access token
-        const { email, username, profile_img_url, coins } = user[0];
-        const userObj = { email, username, profile_img_url, coins };
-        const accessToken = jwt.sign({ user: username }, ACCESS_TOKEN_SECRET);
+  if (email) {
+    service
+      .findUser(email)
+      .then((user) => {
+        if (bcrypt.compareSync(password, user[0].password)) {
+          // send user info without password for security and access token
+          const { email, username, profile_img_url, coins } = user[0];
+          const userObj = { email, username, profile_img_url, coins };
+          const accessToken = jwt.sign({ user: username }, ACCESS_TOKEN_SECRET);
 
-        res.json({ user: userObj, accessToken });
-        return;
-      }
-      return null;
-    })
-    .catch((e) => res.send(e));
+          res.json({ user: userObj, accessToken });
+          return;
+        } else {
+          res.status(401).json({ message: 'invalid Credentials' });
+        }
+        return null;
+      })
+      .catch((e) => res.send(e));
+  } else {
+    res.json({ message: 'invalid' });
+  }
 };
 
 module.exports = {

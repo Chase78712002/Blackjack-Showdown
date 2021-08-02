@@ -24,6 +24,10 @@
   text-shadow: 3px 3px mediumvioletred;
 }
 
+.error-alert {
+  text-align: center;
+}
+
 .welcome {
   text-align: center;
 }
