@@ -10,6 +10,8 @@ const server = app.listen(PORT, () => {
 });
 //Game
 const Game = require('./game/game');
+const { getCoins } = require('./game/game.controller');
+const { updateCoin } = require('./game/game.service');
 // Socket setup
 const io = socket(server, {
   cors: {
@@ -25,14 +27,33 @@ io.on('connection', (socket) => {
   // socket.join(id)
   console.log('made socket connection! socket_id: ', socket.id);
   const activeGames = [];
-  socket.on('newGame', (room) => {
-    console.log('New Game Created');
-    activeGames[room] = new Game(room);
+
+
+  socket.on('newGame', (data) => {
+    console.log('New Game Created, room#: ', data.roomNum);
+    const room = data.roomNum;
+    const username = data.username;
+    getCoins(username)
+    .then( result => {
+      const coin = result[0].coins;
+      activeGames[room] = new Game(id = room, player1=username, player2='computer', coinbalance= coin);
+      console.log('activegames-player1 coin: ', activeGames[room].player1.coins)
+
+      socket.emit('loadUserCoins', activeGames[room].player1.coins)
+    })
+    
   });
   socket.on('bet', (bet, room) => {
-    console.log('Bet Placed');
-    activeGames[room].player1.bet(bet);
-    socket.emit('betPlaced');
+    const player1 = activeGames[room].player1
+    console.log('Bet Placed: ', bet);
+    player1.bet(bet);
+    console.log('player1.name: ', player1.name)
+    console.log('player1 coin remain: ', player1.coins)
+    updateCoin(player1.name, player1.coins)
+      .then(result => {
+        socket.emit('betPlaced');
+        socket.emit('loadUserCoins', result)
+      })
   });
   socket.on('deal', (room) => {
     activeGames[room].dealCards();
@@ -64,7 +85,7 @@ io.on('connection', (socket) => {
   });
 
   socket.on('disconnect', (socket) => {
-    console.log('socket disconnected', socket.id);
+    console.log('socket disconnected');
   });
 });
 

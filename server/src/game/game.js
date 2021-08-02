@@ -4,7 +4,7 @@ const AIPlayer = require('./aiplayer');
 const Round = require('./round');
 
 class Game {
-  constructor(id, player1 = 'singleplayer', player2 = 'computer') {
+  constructor(id, player1 = 'singleplayer', player2 = 'computer', coinbalance) {
     this.id = id;
     this.deck = new Deck();
     this.deck.shuffle();
@@ -12,7 +12,7 @@ class Game {
     this.rounds = [new Round(this.roundCount)];
     this.useAI = false;
     this.turn = true;
-    this.player1 = new Player(player1, this);
+    this.player1 = new Player(player1, this, coinbalance);
     if (player2 === 'computer') {
       this.useAI = true;
       this.player2 = new AIPlayer(player2, this);
@@ -41,6 +41,7 @@ class Game {
   }
   win(player) {
     console.log(`${player.name} wins!`);
+    console.log('pot amount won: ', this.rounds[this.roundCount].pot)
     //this.nextRound();
     return 'WIN';
   }
