@@ -22,7 +22,8 @@ app.use(morgan('dev'));
 app.use(cors());
 app.use(express.json());
 
-app.use(rootRouter);
+//app.use(rootRouter);
+app.use('/', express.static(path.resolve(__dirname, '../../../client', 'build', 'index.html')));
 app.use('/users', usersRouter);
 app.use('/api', apiRouter);
 
