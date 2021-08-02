@@ -14,24 +14,24 @@ export default function Game({ roomNumber = 0, currentUser }) {
   const [gameState, setGameState] = useState('INPLAY');
   const [initialBetPlaced, setInitialBetPlaced] = useState(false);
   const [coinBalance, setCoinBalance] = useState('');
-  
+
   const socket = useContext(SocketContext);
 
   // #region sockets
   useEffect(() => {
     // Listening for hit data from server
     //implement check if newRoom or if game is currently going
-    console.log('current user data: ', user)
-    console.log('current username: ', user.username)
+    console.log('current user data: ', user);
+    console.log('current username: ', user.username);
     socket.emit('newGame', {
-        username: user.username,
-        roomNum: room
+      username: user.username,
+      roomNum: room
     });
     // Game start, pulling game data from server
     socket.on('loadUserCoins', (coin) => {
-        console.log('current user coin balance: ', coin)
-        setCoinBalance(prevBalance => coin)
-    })
+      console.log('current user coin balance: ', coin);
+      setCoinBalance((prevBalance) => coin);
+    });
 
     //placebet Implementation
     socket.on('betPlaced', () => {
@@ -132,16 +132,6 @@ export default function Game({ roomNumber = 0, currentUser }) {
             </Button>
           </div>
         )}
-
-        {/* <div className='mid--bet'>
-          {initialBetPlaced ? (
-            <></>
-          ) : (
-            <Button variant='pixel' onClick={placeBet}>
-              Place Bet
-            </Button>
-          )}
-        </div> */}
       </div>
 
       <div className='table-container--bottom'>
@@ -164,7 +154,8 @@ export default function Game({ roomNumber = 0, currentUser }) {
       </div>
 
       <div className='bottombar'>
-        <h1>Coins: {coinBalance}</h1>
+        <img src='/img/coin.png'></img>
+        <h1>X {coinBalance}</h1>
       </div>
     </div>
   );

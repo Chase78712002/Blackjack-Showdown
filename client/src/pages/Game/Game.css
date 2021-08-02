@@ -61,3 +61,12 @@ html {
   width: 300px;
   justify-content: space-evenly;
 }
+
+.bottombar {
+  display: flex;
+  justify-content: flex-start;
+}
+.bottombar img {
+  height: 70px;
+  width: auto;
+}
