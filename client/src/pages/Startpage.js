@@ -10,7 +10,7 @@ export default function Startpage(props) {
       <h1> Welcome {name} </h1>
       <br />
       <Link to='/game'>
-        <Button variant='pixel' backgroundColor='blue'>
+        <Button variant='pixel' backgroundColor='orange'>
           Game Start
         </Button>
       </Link>
@@ -20,6 +20,7 @@ export default function Startpage(props) {
           logout(updateUser);
         }}
         variant='pixel'
+        backgroundColor='midnightblue'
       >
         Logout
       </Button>

@@ -95,7 +95,7 @@ export default function Game({ roomNumber = 0, currentUser }) {
     <div className='table-background'>
       <div className='topbar'>
         <Link to='/'>
-          <Button variant='pixel' size='small' backgroundColor='orange'>
+          <Button variant='pixel' size='small' backgroundColor='midnightblue'>
             Home
           </Button>
         </Link>
@@ -119,7 +119,11 @@ export default function Game({ roomNumber = 0, currentUser }) {
       <div className='table-container--mid'>
         {initialBetPlaced ? (
           <div className='mid--deck'>
-            <Button variant='pixel' onClick={drawCard}>
+            <Button
+              variant='pixel'
+              backgroundColor='midnightblue'
+              onClick={drawCard}
+            >
               Hit
             </Button>
             <div className='spacer'></div>
@@ -127,7 +131,7 @@ export default function Game({ roomNumber = 0, currentUser }) {
           </div>
         ) : (
           <div className='mid--pot'>
-            <Button variant='pixel' onClick={placeBet}>
+            <Button variant='pixel' backgroundColor='orange' onClick={placeBet}>
               Place Bet
             </Button>
           </div>
@@ -145,7 +149,11 @@ export default function Game({ roomNumber = 0, currentUser }) {
         </div>
 
         {initialBetPlaced ? (
-          <Button variant='pixel' onClick={stand}>
+          <Button
+            variant='pixel'
+            backgroundColor='midnightblue'
+            onClick={stand}
+          >
             Stand
           </Button>
         ) : (

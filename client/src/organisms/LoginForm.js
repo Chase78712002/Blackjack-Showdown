@@ -51,7 +51,7 @@ export default function LoginForm(props) {
           />
         </label>
         <br />
-        <Button type='submit' variant='pixel' backgroundColor='blue'>
+        <Button type='submit' variant='pixel' backgroundColor='midnightblue'>
           Login
         </Button>
       </form>
