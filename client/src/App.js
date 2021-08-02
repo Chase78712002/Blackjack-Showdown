@@ -2,7 +2,7 @@ import './App.css';
 import Homepage from './pages/Homepage';
 import CreateUserPage from './pages/CreateUserPage';
 import Game from './pages/Game/Game';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { SocketContext, socket } from './utils/SocketProvider';
 import { useEffect, useState } from 'react';
 import Startpage from './pages/Startpage';

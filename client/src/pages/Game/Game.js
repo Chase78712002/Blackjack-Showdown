@@ -42,9 +42,11 @@ export default function Game({ roomNumber = 0, currentUser }) {
       }
     });
 
-    socket.on('deal', (hand1, hand2) => {
+    socket.on('deal', (hand1, hand2, gameState) => {
+      console.log('gamestate on deal', gameState);
       setPlayer1Hand(hand1);
       setPlayer2Hand(hand2);
+      setGameState(gameState || 'INPLAY');
     });
     socket.on('hit', (hand, handState) => {
       setPlayer1Hand(hand);

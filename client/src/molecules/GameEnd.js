@@ -8,6 +8,7 @@ export default function GameEnd({ gameState, nextRound, name }) {
     <div className='modal'>
       <div className='modal-content'>
         <div>
+          {gameState === 'TIE' ? <h1>It's a tie.</h1> : <></>}
           {gameState === 'WIN' ? (
             <h1>{name || 'Player 1'} Wins!!!</h1>
           ) : (

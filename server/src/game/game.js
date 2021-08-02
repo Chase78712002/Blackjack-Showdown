@@ -12,6 +12,7 @@ class Game {
     this.rounds = [new Round(this.roundCount)];
     this.useAI = false;
     this.turn = true;
+    this.gamestate = '';
     this.player1 = new Player(player1, this, coinbalance);
     if (player2 === 'computer') {
       this.useAI = true;
@@ -22,8 +23,10 @@ class Game {
     console.log('DEAL');
     this.hit(this.player1);
     this.hit(this.player1);
-    this.hit(this.player2);
-    this.hit(this.player2);
+    if (this.gamestate !== 'WIN') {
+      this.hit(this.player2);
+      this.hit(this.player2);
+    }
     console.log('===============');
   }
   hit(player) {
@@ -32,30 +35,42 @@ class Game {
     return this.evaluateHand(player);
   }
   evaluateHand(player) {
-    console.log('evaluateHand called');
-    // if(player.handValue()[1] != player.handValue()[0]){
+    console.log('evaluateHand called', player.name);
+    console.log(player.handValue()[2]);
     if (player.handValue()[2] > 21) return this.bust(player);
     else if (player.handValue()[2] === 21) return this.win(player);
     else if (player.handValue()[2] === 21) return this.win(player);
+    this.gamestate = 'INPLAY';
     return 'INPLAY';
   }
+
   win(player) {
+    console.log('win called');
     console.log(`${player.name} wins!`);
-    console.log('pot amount won: ', this.rounds[this.roundCount].pot)
-    //this.nextRound();
+    console.log('pot amount won: ', this.rounds[this.roundCount].pot);
+    if (player.name === 'computer') {
+      console.log('computer won');
+      this.gamestate = `LOSE`;
+      return 'LOSE';
+    }
+    this.gamestate = `WIN`;
     return 'WIN';
   }
+
   tie() {
     console.log(`Its a tie!`);
+    return 'TIE';
     //this.nextRound(true);
   }
   bust(player) {
     console.log('bust called');
     console.log('BUST!! Player:', player.name);
-    // if(player.name == this.player1.name)
-    //   this.win(this.player2);
-    // else
-    //   this.win(this.player1);
+
+    if (player.name === 'computer') {
+      this.gamestate = 'WIN';
+      return 'WIN';
+    }
+    this.gamestate = 'LOSE';
     return 'LOSE';
   }
   placeBet(player, amount) {
@@ -91,6 +106,7 @@ class Game {
     else if (this.player1.handValue()[2] === this.player2.handValue()[2])
       return this.tie();
     else {
+      this.gamestate = 'LOSE';
       return 'LOSE';
       //return this.win(this.player2);
     }
