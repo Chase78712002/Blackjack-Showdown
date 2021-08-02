@@ -30,24 +30,23 @@ html {
   position: relative;
   justify-content: space-evenly;
 }
+.table-container--mid img {
+  height: 100px;
+  width: auto;
+}
 .mid--deck {
-  /* left: 50%; */
+  display: flex;
+  align-items: center;
+}
+.mid--bet {
+  display: flex;
+  align-items: center;
+}
+.mid--pot {
   display: flex;
   align-items: center;
 }
 
-.mid--pot {
-  right: 50%;
-}
-#pot {
-  display: flex;
-  align-items: center;
-  height: 165px;
-  width: 165px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-}
 .table-container--bottom {
   /* border: black 1px solid; */
   height: 310px;

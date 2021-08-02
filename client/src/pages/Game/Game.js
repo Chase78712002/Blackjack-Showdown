@@ -113,7 +113,9 @@ export default function Game({ roomNumber = 0, currentUser }) {
           </Button>
         </div>
         <div className='mid--pot'>
-          <span id='pot'></span>
+          {initialBetPlaced ? <img src='/img/coin_pile.gif'></img> : <></>}
+        </div>
+        <div className='mid--bet'>
           <Button variant='pixel' onClick={placeBet}>
             Place Bet
           </Button>
