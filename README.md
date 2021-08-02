@@ -63,11 +63,6 @@ npm run storybook
 
 
 
-
-
-
-
-
 # Screenshots
 !["Log in page"](link)
 !["Landing page"](link)

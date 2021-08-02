@@ -8,7 +8,7 @@ export default function LoginForm(props) {
   const { updateUser } = props;
   const initialFormState = {
     email: '',
-    password: 'password'
+    password: ''
   };
   const [formData, setFormData] = useState({ ...initialFormState });
   const [userError, setUserError] = useState(null);
@@ -37,6 +37,7 @@ export default function LoginForm(props) {
             name='email'
             onChange={handleChange}
             value={formData.email}
+            placeholder="email"
           />
         </label>
         <br />
@@ -44,10 +45,11 @@ export default function LoginForm(props) {
           Password:
           <input
             id='password'
-            type='text'
+            type='password'
             name='password'
             onChange={handleChange}
             value={formData.password}
+            placeholder="password"
           />
         </label>
         <br />
