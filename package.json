@@ -4,13 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "cd client && npm run build",
-    "install-client": "cd client && npm install",
-    "heroku-postbuild": "npm run install-client && npm run build",
+    //"test": "echo \"Error: no test specified\" && exit 1",
+    //"build": "cd client && npm run build",
+    //"install-client": "cd client && npm install",
+    //"heroku-postbuild": "npm run install-client && npm run build",
     "start": "node server/src/server.js",
-    "start:dev": "nodemon server/src/server.js",
-    "client": "cd client && npm start"
+    //"client": "cd client && npm start"
   },
   "repository": {
     "type": "git",
@@ -25,7 +24,6 @@
   "homepage": "https://github.com/Chase78712002/Blackjack-Showdown#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
-    "concurrently": "^6.2.0",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
@@ -34,6 +32,5 @@
     "morgan": "^1.10.0",
     "pg": "^8.7.1",
     "socket.io": "^4.1.3"
-  },
-  "devDependencies": {}
+  }
 }
