@@ -50,9 +50,9 @@ export async function loginUser(data, updateUser, errorfunc) {
     .put(`${API_BASE_URL}/users/login`, { data })
     .then((res) => {
       if (res.data.user) {
-        console.log(res.data);
         updateUser(res.data.user, true);
         console.log('logged in');
+        localStorage.setItem('currentUser', JSON.stringify(res.data.user));
         localStorage.setItem('accessToken', res.data.accessToken);
         return res.data;
       } else {
@@ -70,6 +70,7 @@ export function getAuthToken() {
 }
 
 export function logout(updateUser) {
+  localStorage.removeItem('currentUser');
   localStorage.removeItem('accessToken');
   updateUser({ currentUser: {} }, false);
 }

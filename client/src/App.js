@@ -4,7 +4,7 @@ import CreateUserPage from './pages/CreateUserPage';
 import Game from './pages/Game/Game';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import { SocketContext, socket } from './utils/SocketProvider';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Startpage from './pages/Startpage';
 import Aboutpage from './pages/About';
 
@@ -13,6 +13,14 @@ function App() {
     currentUser: { username: '' },
     isLoggedIn: false
   });
+
+  useEffect(() => {
+    const loggedUser = JSON.parse(localStorage.getItem('currentUser'));
+    console.log(loggedUser);
+    if (loggedUser) {
+      updateUser(loggedUser, true);
+    }
+  }, []);
 
   const updateUser = (newuser, bool) => {
     setState({ ...state, currentUser: newuser, isLoggedIn: bool });
