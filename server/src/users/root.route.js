@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    res.sendFile('../../client/public/index.html');
+    res.sendFile(path.join(__dirname, '../../client/build/index.html'));
 })
 
 module.exports = router;
