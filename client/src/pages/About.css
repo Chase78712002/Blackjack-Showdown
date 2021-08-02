@@ -2,8 +2,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 200vh;
+  min-height: 300vh;
   justify-content: space-evenly;
+}
+
+.top-spacer {
+  height: 2em;
 }
 
 .back {
@@ -15,6 +19,7 @@
 .content h1 {
   font-size: 3em;
   color: midnightblue;
+  text-shadow: 2px 2px orange;
 }
 
 .icons img {
@@ -24,6 +29,7 @@
 
 .text-block {
   width: 50%;
+  margin: 1em;
 }
 
 .members {
@@ -34,19 +40,37 @@
   justify-content: space-evenly;
 }
 
+.social-icon {
+  max-width: 40px !important;
+  margin: 5px;
+}
+
 .single {
   max-width: 35%;
+  margin: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .single img {
   max-width: 200px;
 }
-.single div {
-  margin: 1em;
-}
+
 .title {
   font-size: large;
+  font-weight: bold;
+  min-width: fit-content;
+  color: midnightblue;
+  margin: 2.5em 2em;
 }
 
 .desc {
   font-size: small;
+  height: 200px;
+}
+
+.social-icon-container {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
 }
