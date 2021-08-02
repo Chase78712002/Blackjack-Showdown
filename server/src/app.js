@@ -12,7 +12,7 @@ const errorHandler = require('./errors/errorHandler');
 const notFound = require('./errors/notFound');
 
 // api and user routers
-const rootRouter = require('./users/root.route');
+// const rootRouter = require('./users/root.route');
 const usersRouter = require('./users/users.router');
 const apiRouter = require('./api/apiRouter');
 
@@ -22,8 +22,13 @@ app.use(morgan('dev'));
 app.use(cors());
 app.use(express.json());
 
-app.use('/client/', express.static(path.join(__dirname, '/client/build')));
-
+//app.use(rootRouter);
+app.use(
+  '/',
+  express.static(
+    path.resolve(__dirname, '../../../client', 'build', 'index.html')
+  )
+);
 app.use('/users', usersRouter);
 app.use('/api', apiRouter);
 
