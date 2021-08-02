@@ -9,7 +9,10 @@ import Startpage from './pages/Startpage';
 import Aboutpage from './pages/About';
 
 function App() {
-  const [state, setState] = useState({ currentUser: {}, isLoggedIn: false });
+  const [state, setState] = useState({
+    currentUser: { username: '' },
+    isLoggedIn: false
+  });
 
   const updateUser = (newuser, bool) => {
     setState({ ...state, currentUser: newuser, isLoggedIn: bool });

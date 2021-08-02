@@ -20,9 +20,13 @@ export default function LoginForm(props) {
     });
   };
 
+  const showError = (error) => {
+    setUserError(error);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    loginUser(formData, updateUser);
+    loginUser(formData, updateUser, showError);
   };
 
   return (

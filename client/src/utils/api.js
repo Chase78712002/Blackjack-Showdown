@@ -43,19 +43,22 @@ export async function postUser(reqBody, signal) {
     []
   );
 }
-//export async function deductBet(req)
 
-export async function loginUser(data, updateUser) {
+export async function loginUser(data, updateUser, errorfunc) {
   axios
     .put(`${API_BASE_URL}/users/login`, { data })
     .then((res) => {
-      updateUser(res.data.user, true);
-      console.log('logged in');
-      localStorage.setItem('accessToken', res.data.accessToken);
-      return res.data;
+      if (res.data.user) {
+        console.log(res.data);
+        updateUser(res.data.user, true);
+        console.log('logged in');
+        localStorage.setItem('accessToken', res.data.accessToken);
+        return res.data;
+      }
+      return;
     })
     .catch((error) => {
-      console.error(error.stack);
+      errorfunc(error);
     });
 }
 
