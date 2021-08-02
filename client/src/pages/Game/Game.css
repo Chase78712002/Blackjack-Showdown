@@ -1,60 +1,64 @@
-body, html {
-    background-image: radial-gradient(circle, rgb(85, 199, 32), rgb(0, 102, 26));
-    /* height: 100%; */
+body,
+html {
+  background-image: radial-gradient(circle, rgb(85, 199, 32), rgb(0, 102, 26));
+  /* height: 100%; */
 }
 
-
 .table-background {
-    
-    /* background-size: cover; */
-    height: 100%;
-    
+  /* background-size: cover; */
+  height: 100%;
 }
 
 .topbar {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .table-container--top {
-    border: black 1px solid;
-    height: 200px;
+  /* border: black 1px solid; */
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .table-container--mid {
-    border: black 1px solid;
-    height: 250px;
-    display: flex;
-    position:relative;
-    justify-content: space-evenly;
-
+  /* border: black 1px solid; */
+  height: 250px;
+  display: flex;
+  position: relative;
+  justify-content: space-evenly;
 }
 .mid--deck {
-    /* left: 50%; */
-    display: flex;
-    align-items: center;
+  /* left: 50%; */
+  display: flex;
+  align-items: center;
 }
 
 .mid--pot {
-    right: 50%
+  right: 50%;
 }
 #pot {
-    height: 165px;
-    width: 165px;
-    background-color: #bbb;
-    border-radius: 50%;
-    display: inline-block;
+  display: flex;
+  align-items: center;
+  height: 165px;
+  width: 165px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
 }
 .table-container--bottom {
-    border: black 1px solid;
-    height: 310px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items:center;
+  /* border: black 1px solid; */
+  height: 310px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 .container--playerHand {
-    display: flex;
-    width: 300px;
-    justify-content: space-evenly;
+  display: flex;
+  flex-direction: row;
+  width: 300px;
+  justify-content: space-evenly;
 }

@@ -84,7 +84,6 @@ export default function Game({ roomNumber = 0, currentUser }) {
   return (
     <div className='table-background'>
       <div className='topbar'>
-        <h2>Turn: </h2>
         <Link to='/'>
           <Button variant='pixel' size='small' backgroundColor='orange'>
             Home
@@ -98,10 +97,13 @@ export default function Game({ roomNumber = 0, currentUser }) {
       )}
       <div className='table-container--top'>
         <h2>---Dealer---</h2>
-        <h3>Hand:</h3>
-        {player2Hand.map((card) => {
-          return <Card key={card.name} card={card.name} imgUrl={card.imgUrl} />;
-        })}
+        <div className='container--playerHand'>
+          {player2Hand.map((card) => {
+            return (
+              <Card key={card.name} card={card.name} imgUrl={card.imgUrl} />
+            );
+          })}
+        </div>
       </div>
 
       <div className='table-container--mid'>
@@ -123,7 +125,7 @@ export default function Game({ roomNumber = 0, currentUser }) {
         <div className='container--playerHand'>
           {player1Hand.map((card) => {
             return (
-              <Card key={Card.name} name={card.name} imgUrl={card.imgUrl} />
+              <Card key={card.name} card={card.name} imgUrl={card.imgUrl} />
             );
           })}
         </div>

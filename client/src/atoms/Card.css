@@ -1,4 +1,5 @@
 .card {
-  min-height: 8em;
+  height: 160px;
+  width: 120px;
   background-repeat: no-repeat;
 }

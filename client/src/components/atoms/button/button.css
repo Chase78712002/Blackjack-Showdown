@@ -4,7 +4,7 @@
   border: 0;
   border-radius: 3em;
   position: relative;
-  width: 200px;
+  width: 180px;
   height: 60px;
   color: #fff;
   text-decoration: none;
@@ -42,7 +42,7 @@
 }
 .button--small {
   font-size: 12px;
-  width: 70px;
+  width: 100px;
   padding: 10px 16px;
   margin: 6px;
 }
