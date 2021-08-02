@@ -6,7 +6,7 @@ export default function Aboutpage(props) {
   return (
     <div className='content'>
       <Link to='/' className='back'>
-        <Button size='small' backgroundColor='orange'>
+        <Button size='tiny' backgroundColor='orange'>
           Back
         </Button>
       </Link>

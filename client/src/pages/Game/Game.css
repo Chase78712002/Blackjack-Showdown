@@ -42,6 +42,7 @@ html {
 .spacer {
   width: 300px;
 }
+
 .mid--pot {
   display: flex;
   align-items: center;
@@ -69,4 +70,40 @@ html {
 .bottombar img {
   height: 70px;
   width: auto;
+}
+
+@media only screen and (max-width: 500px) {
+  .table-container--top {
+    height: 200px;
+  }
+  .table-container--mid {
+    height: 150px;
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  .table-container--mid img {
+    height: auto;
+    width: 100px;
+    margin: 1em;
+  }
+  .mid--deck {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .container--playerHand {
+    display: flex;
+    flex-direction: row;
+    width: 220px;
+    justify-content: space-evenly;
+  }
+  .topbar {
+    height: 50px;
+  }
+  h2 {
+    font-size: large;
+  }
 }

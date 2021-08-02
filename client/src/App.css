@@ -24,6 +24,10 @@
   text-shadow: 3px 3px mediumvioletred;
 }
 
+.welcome {
+  text-align: center;
+}
+
 a {
   color: midnightblue;
   text-decoration: none;
@@ -31,4 +35,19 @@ a {
 
 a:hover {
   color: powderblue;
+}
+
+@media only screen and (max-width: 500px) {
+  .main {
+    height: 650px;
+  }
+
+  .main-title {
+    font-size: 2em;
+    margin: 1em;
+  }
+
+  h1 {
+    font-size: large;
+  }
 }

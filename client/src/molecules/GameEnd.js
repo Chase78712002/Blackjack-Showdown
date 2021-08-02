@@ -14,7 +14,7 @@ export default function GameEnd({ gameState, nextRound }) {
             <h1>Dealer Wins</h1>
           )}
         </div>
-        <div>
+        <div className='modal-buttons'>
           <Link to='/'>
             <Button variant='pixel' size='small' backgroundColor='midnightblue'>
               LEAVE

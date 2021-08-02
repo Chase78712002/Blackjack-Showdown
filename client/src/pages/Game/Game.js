@@ -95,7 +95,7 @@ export default function Game({ roomNumber = 0, currentUser }) {
     <div className='table-background'>
       <div className='topbar'>
         <Link to='/'>
-          <Button variant='pixel' size='small' backgroundColor='midnightblue'>
+          <Button variant='pixel' size='tiny' backgroundColor='midnightblue'>
             Home
           </Button>
         </Link>
