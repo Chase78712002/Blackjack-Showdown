@@ -33,8 +33,7 @@ export default function LoginForm(props) {
     <div>
       <ErrorAlert error={userError} />
       <form onSubmit={handleSubmit}>
-        <label htmlFor='email'>
-          Email:
+        <label for='email'>Email:
           <input
             id='email'
             type='email'
@@ -45,8 +44,7 @@ export default function LoginForm(props) {
           />
         </label>
         <br />
-        <label htmlFor='password'>
-          Password:
+        <label for='password'>Password:
           <input
             id='password'
             type='password'
