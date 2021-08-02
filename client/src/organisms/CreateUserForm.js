@@ -5,8 +5,8 @@ import { postUser } from '../utils/api';
 
 export default function CreateUserForm() {
   const initialFormState = {
-    username: 'username',
-    password: 'password',
+    username: '',
+    password: '',
     email: '',
     coins: 100
   };
@@ -22,9 +22,14 @@ export default function CreateUserForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    postUser(formData).catch((error) => {
-      setUserError(error);
-    });
+    postUser(formData)
+      .then(res => {
+        console.log('register success!')
+
+      })
+      .catch((error) => {
+        setUserError(error);
+      });
   };
 
   return (
@@ -39,6 +44,7 @@ export default function CreateUserForm() {
             name='username'
             onChange={handleChange}
             value={formData.username}
+            placeholder="username"
           />
         </label>
         <br />
@@ -46,10 +52,11 @@ export default function CreateUserForm() {
           Password:
           <input
             id='password'
-            type='text'
+            type='password'
             name='password'
             onChange={handleChange}
             value={formData.password}
+            placeholder="password"
           />
         </label>
         <br />
@@ -61,6 +68,7 @@ export default function CreateUserForm() {
             name='email'
             onChange={handleChange}
             value={formData.email}
+            placeholder="email"
           />
         </label>
         <br />
