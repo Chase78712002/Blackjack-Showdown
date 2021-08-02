@@ -15,7 +15,6 @@ Blackjack-Showdown uses **React** version `17.0.2`, **Express** version `4.17.1`
 1. CD into 'client' and run `npm install` to install react and its dependencies.
 2. CD into 'server' and run `npm install` to install backend dependencies.
 
-
 ## Running Backend Server
 
 ```sh
@@ -33,11 +32,15 @@ npm start
 ```sh
 npm run storybook
 ```
+
 ## Tech stack
+
 - **Front-end:** ReactJS v17.0.2
 - **Back-end:** Node, Express v4.17.1
 - **Database:** PostgreSQL
+
 ## Other Dependencies
+
 - axios
 - react-router-dom
 - socket.io
@@ -50,24 +53,25 @@ npm run storybook
 - storybook
 
 ---
+
 ## Developers
-* **Evelyn Yoa**
-    - GitHub: <https://github.com/eyoa>
-    - LinkedIn: <>
-* **Audrey Margolis**
-    - GitHub: <https://github.com/AudreyMargolis>
-    - LinkedIn: <>
-* **Alvin Lin**
-    - GitHub: <https://github.com/Chase78712002>
-    - LinkedIn: <https://www.linkedin.com/in/alvin-lin-6933b39a/>
 
-
+- **Evelyn Yoa**
+  - GitHub: <https://github.com/eyoa>
+  - LinkedIn: <https://www.linkedin.com/in/evelyn-yoa/>
+- **Audrey Margolis**
+  - GitHub: <https://github.com/AudreyMargolis>
+  - LinkedIn: <>
+- **Alvin Lin**
+  - GitHub: <https://github.com/Chase78712002>
+  - LinkedIn: <https://www.linkedin.com/in/alvin-lin-6933b39a/>
 
 # Screenshots
-!["Log in page"](link)
-!["Landing page"](link)
-!["Game start page"](link)
-!["Game 1"](link)
-!["Game 2"](link)
-!["Dealer won"](link)
-!["Player won"](link)
+
+!["Log in page"](https://github.com/Chase78712002/Blackjack-Showdown/blob/frontend-landing/client/public/img/screenshots/loginPage.png?raw=true)
+!["Landing page"](https://github.com/Chase78712002/Blackjack-Showdown/blob/frontend-landing/client/public/img/screenshots/aboutpage.png?raw=true)
+!["Game start page"](https://github.com/Chase78712002/Blackjack-Showdown/blob/frontend-landing/client/public/img/screenshots/startpage.png?raw=true)
+!["Game 1"](https://github.com/Chase78712002/Blackjack-Showdown/blob/frontend-landing/client/public/img/screenshots/game1.png?raw=true)
+!["Game 2"](https://github.com/Chase78712002/Blackjack-Showdown/blob/frontend-landing/client/public/img/screenshots/game2.png?raw=true)
+!["Dealer won"](https://github.com/Chase78712002/Blackjack-Showdown/blob/frontend-landing/client/public/img/screenshots/dealerwin.png?raw=true)
+!["Player won"](https://github.com/Chase78712002/Blackjack-Showdown/blob/frontend-landing/client/public/img/screenshots/playerwin.png?raw=true)

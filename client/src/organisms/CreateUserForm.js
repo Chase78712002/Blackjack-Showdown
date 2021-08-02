@@ -72,10 +72,9 @@ export default function CreateUserForm() {
           />
         </label>
         <br />
-        <Button type='submit' variant='pixel' backgroundColor='blue'>
+        <Button type='submit' variant='pixel' backgroundColor='midnightblue'>
           Submit
         </Button>
-        {/* <button type='submit'>Submit</button> */}
       </form>
     </div>
   );

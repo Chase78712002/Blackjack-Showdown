@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Component } from 'react';
 import authHeader from './authHeader';
 
 const API_BASE_URL =
@@ -43,19 +44,24 @@ export async function postUser(reqBody, signal) {
     []
   );
 }
-//export async function deductBet(req)
 
-export async function loginUser(data, updateUser) {
+export async function loginUser(data, updateUser, errorfunc) {
   axios
     .put(`${API_BASE_URL}/users/login`, { data })
     .then((res) => {
-      updateUser(res.data.user, true);
-      console.log('logged in');
-      localStorage.setItem('accessToken', res.data.accessToken);
-      return res.data;
+      if (res.data.user) {
+        updateUser(res.data.user, true);
+        console.log('logged in');
+        localStorage.setItem('currentUser', JSON.stringify(res.data.user));
+        localStorage.setItem('accessToken', res.data.accessToken);
+        return res.data;
+      } else {
+        errorfunc(res.data);
+        console.log(res.data);
+      }
     })
     .catch((error) => {
-      console.error(error.stack);
+      errorfunc(error);
     });
 }
 
@@ -64,6 +70,7 @@ export function getAuthToken() {
 }
 
 export function logout(updateUser) {
+  localStorage.removeItem('currentUser');
   localStorage.removeItem('accessToken');
   updateUser({ currentUser: {} }, false);
 }

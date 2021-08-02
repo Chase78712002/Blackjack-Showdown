@@ -27,5 +27,19 @@ input {
   border-left: transparent;
   border-right: transparent;
   background-color: transparent;
-  border-color: white;
+  border-color: aliceblue;
+}
+
+@media only screen and (max-width: 500px) {
+  .form-wrapper {
+    min-height: fit-content;
+    max-width: 250px;
+  }
+  form {
+    font-size: small;
+  }
+  input {
+    font-size: small;
+    max-width: 220px;
+  }
 }

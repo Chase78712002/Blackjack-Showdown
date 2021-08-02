@@ -7,10 +7,10 @@ export default function Startpage(props) {
   const { name, updateUser } = props;
   return (
     <div className='form-wrapper'>
-      <h1> Welcome {name} </h1>
+      <h1 className='welcome'> Welcome {name} </h1>
       <br />
       <Link to='/game'>
-        <Button variant='pixel' backgroundColor='blue'>
+        <Button variant='pixel' backgroundColor='orange'>
           Game Start
         </Button>
       </Link>
@@ -20,6 +20,7 @@ export default function Startpage(props) {
           logout(updateUser);
         }}
         variant='pixel'
+        backgroundColor='midnightblue'
       >
         Logout
       </Button>
