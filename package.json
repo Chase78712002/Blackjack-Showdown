@@ -4,12 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "cd client && npm run build",
-    "install-client": "cd client && npm install",
-    "heroku-postbuild": "npm run install-client && npm run build",
-    "start": "node server/src/server.js",
-    "client": "cd client && npm start"
+    "build": "npm -prefix client run build",
+    "preinstall": "cd ./backend && npm install",
+    "install": "cd ./client && npm install",
+    "start": "npx concurrently 'npm run start:backend' 'npm run start:client'",
+    "start:backend": "npm --prefix ./backend start",
+    "start:client": "npm --prefix ./client start",
+    "start:dev": "npx concurrently 'npm run start:dev --prefix ./backend' 'npm start --prefix ./client'",
+    "test": "npm run test:client && npm run test:backend"
   },
   "repository": {
     "type": "git",
