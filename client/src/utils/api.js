@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Component } from 'react';
 import authHeader from './authHeader';
 
 const API_BASE_URL =
@@ -54,8 +55,10 @@ export async function loginUser(data, updateUser, errorfunc) {
         console.log('logged in');
         localStorage.setItem('accessToken', res.data.accessToken);
         return res.data;
+      } else {
+        errorfunc(res.data);
+        console.log(res.data);
       }
-      return;
     })
     .catch((error) => {
       errorfunc(error);
