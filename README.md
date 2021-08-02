@@ -68,10 +68,10 @@ npm run storybook
 
 # Screenshots
 
-!["Log in page"](link)
-!["Landing page"](link)
-!["Game start page"](link)
-!["Game 1"](link)
-!["Game 2"](link)
-!["Dealer won"](link)
-!["Player won"](link)
+!["Log in page"](https://github.com/Chase78712002/Blackjack-Showdown/blob/frontend-landing/client/public/img/screenshots/loginPage.png?raw=true)
+!["Landing page"](https://github.com/Chase78712002/Blackjack-Showdown/blob/frontend-landing/client/public/img/screenshots/aboutpage.png?raw=true)
+!["Game start page"](https://github.com/Chase78712002/Blackjack-Showdown/blob/frontend-landing/client/public/img/screenshots/startpage.png?raw=true)
+!["Game 1"](https://github.com/Chase78712002/Blackjack-Showdown/blob/frontend-landing/client/public/img/screenshots/game1.png?raw=true)
+!["Game 2"](https://github.com/Chase78712002/Blackjack-Showdown/blob/frontend-landing/client/public/img/screenshots/game2.png?raw=true)
+!["Dealer won"](https://github.com/Chase78712002/Blackjack-Showdown/blob/frontend-landing/client/public/img/screenshots/dealerwin.png?raw=true)
+!["Player won"](https://github.com/Chase78712002/Blackjack-Showdown/blob/frontend-landing/client/public/img/screenshots/playerwin.png?raw=true)
