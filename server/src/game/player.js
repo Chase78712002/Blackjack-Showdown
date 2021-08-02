@@ -1,12 +1,13 @@
 const {Card, Deck} = require("./deck");
+const { getCoin } = require("./game.service");
 
 class Player {
-    constructor(name, game, coins = 100) {
-      this.name = name;
+    constructor(username, game, coinBalance) {
+      this.name = username;
       this.hand = [];
       //this.handvalue = [];
       this.canPlay = true;
-      this.coins = 100;
+      this.coins = coinBalance;
       this.game = game;
     }
     
