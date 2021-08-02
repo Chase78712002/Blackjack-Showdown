@@ -25,6 +25,7 @@
   "homepage": "https://github.com/Chase78712002/Blackjack-Showdown#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "concurrently": "^6.2.0",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
