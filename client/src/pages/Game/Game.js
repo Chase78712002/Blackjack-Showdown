@@ -107,19 +107,31 @@ export default function Game({ roomNumber = 0, currentUser }) {
       </div>
 
       <div className='table-container--mid'>
-        <div className='mid--deck'>
-          <Button variant='pixel' onClick={drawCard}>
-            Hit
-          </Button>
-        </div>
-        <div className='mid--pot'>
-          {initialBetPlaced ? <img src='/img/coin_pile.gif'></img> : <></>}
-        </div>
-        <div className='mid--bet'>
-          <Button variant='pixel' onClick={placeBet}>
-            Place Bet
-          </Button>
-        </div>
+        {initialBetPlaced ? (
+          <div className='mid--deck'>
+            <Button variant='pixel' onClick={drawCard}>
+              Hit
+            </Button>
+            <div className='spacer'></div>
+            <img src='/img/coin_pile.gif'></img>
+          </div>
+        ) : (
+          <div className='mid--pot'>
+            <Button variant='pixel' onClick={placeBet}>
+              Place Bet
+            </Button>
+          </div>
+        )}
+
+        {/* <div className='mid--bet'>
+          {initialBetPlaced ? (
+            <></>
+          ) : (
+            <Button variant='pixel' onClick={placeBet}>
+              Place Bet
+            </Button>
+          )}
+        </div> */}
       </div>
 
       <div className='table-container--bottom'>
@@ -131,9 +143,14 @@ export default function Game({ roomNumber = 0, currentUser }) {
             );
           })}
         </div>
-        <Button variant='pixel' onClick={stand}>
-          Stand
-        </Button>
+
+        {initialBetPlaced ? (
+          <Button variant='pixel' onClick={stand}>
+            Stand
+          </Button>
+        ) : (
+          <></>
+        )}
       </div>
 
       <div className='bottombar'>

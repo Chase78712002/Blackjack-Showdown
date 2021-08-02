@@ -38,9 +38,9 @@ html {
   display: flex;
   align-items: center;
 }
-.mid--bet {
-  display: flex;
-  align-items: center;
+
+.spacer {
+  width: 300px;
 }
 .mid--pot {
   display: flex;
