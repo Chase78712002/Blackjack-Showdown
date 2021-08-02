@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import ErrorAlert from '../atoms/ErrorAlert';
 import { Button } from '../components/atoms/button/Button';
-import { postUser } from '../utils/api';
+import { loginUser, postUser } from '../utils/api';
 
-export default function CreateUserForm() {
+export default function CreateUserForm(props) {
+  const { updateUser } = props
   const initialFormState = {
     username: '',
     password: '',
@@ -12,6 +14,7 @@ export default function CreateUserForm() {
   };
   const [formData, setFormData] = useState({ ...initialFormState });
   const [userError, setUserError] = useState(null);
+  const history = useHistory();
 
   const handleChange = ({ target }) => {
     setFormData({
@@ -25,7 +28,8 @@ export default function CreateUserForm() {
     postUser(formData)
       .then(res => {
         console.log('register success!')
-
+        // loginUser(formData, updateUser)
+        history.push('/')
       })
       .catch((error) => {
         setUserError(error);
