@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { Button } from '../../components/atoms/button/Button';
 import Card from '../../atoms/Card';
@@ -101,7 +101,11 @@ export default function Game({ roomNumber = 0, currentUser }) {
         </Link>
       </div>
       {gameState != 'INPLAY' ? (
-        <GameEnd gameState={gameState} nextRound={nextRound} />
+        <GameEnd
+          gameState={gameState}
+          nextRound={nextRound}
+          name={currentUser.username}
+        />
       ) : (
         ''
       )}
