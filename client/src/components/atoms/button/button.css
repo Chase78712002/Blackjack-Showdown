@@ -23,6 +23,31 @@
 }
 .button--pixel {
   background-color: black;
+  background: var(--inner);
+  box-shadow:
+      0   -6px 0  -2px var(--inner),
+      0    6px 0  -2px var(--inner),
+      0  -12px 0  -4px var(--inner),
+      0   12px 0  -4px var(--inner),
+      0  -18px 0  -8px var(--inner),
+      0   18px 0  -8px var(--inner),
+      0  -24px 0 -12px var(--inner),
+      0   24px 0 -12px var(--inner),
+     -6px  0   0   0   var(--border),
+      6px  0   0   0   var(--border),
+      0    0   0   4px var(--border),
+      0   -6px 0   2px var(--border),
+      0    6px 0   2px var(--border),
+      0  -10px 0   0   var(--border),
+      0   10px 0   0   var(--border),
+      0  -14px 0  -2px var(--border),
+      0   14px 0  -2px var(--border),
+      0  -18px 0  -4px var(--border),
+      0   18px 0  -4px var(--border),
+      0  -24px 0  -8px var(--border),
+      0   24px 0  -8px var(--border),
+      0  -30px 0 -12px var(--border),
+      0   30px 0 -12px var(--border);
 }
 
 .button--pixel:hover {

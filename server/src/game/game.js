@@ -10,6 +10,7 @@ class Game {
     this.deck.shuffle();
     this.roundCount = 0;
     this.rounds = [new Round(this.roundCount)];
+    this.pot = 0;
     this.useAI = false;
     this.turn = true;
     this.gamestate = '';
@@ -53,6 +54,7 @@ class Game {
       this.gamestate = `LOSE`;
       return 'LOSE';
     }
+    player.coins += this.rounds[this.roundCount].pot;
     this.gamestate = `WIN`;
     return 'WIN';
   }
@@ -74,10 +76,11 @@ class Game {
     return 'LOSE';
   }
   placeBet(player, amount) {
-    this.rounds[this.roundCount].pot += amount;
+    this.pot +=amount*2;
+    this.rounds[this.roundCount].pot += amount *2;
     this.rounds[this.roundCount].betCount++;
     if (this.useAI && this.rounds[this.roundCount].betCount % 2 == 1) {
-      this.player2.bet(amount);
+      //this.player2.bet(amount);
     }
   }
   stay() {

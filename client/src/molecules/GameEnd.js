@@ -3,7 +3,9 @@ import React from 'react';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { Button } from '../components/atoms/button/Button';
 
-export default function GameEnd({ gameState, nextRound, name }) {
+export default function GameEnd({ gameState, nextRound, name, won }) {
+  if(gameState ==="WIN")
+    won();
   return (
     <div className='modal'>
       <div className='modal-content'>

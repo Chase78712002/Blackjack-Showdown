@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { Button } from '../../components/atoms/button/Button';
+import BetCounter  from "../../molecules/BetCounter"
 import Card from '../../atoms/Card';
 import './Game.css';
 import { SocketContext } from '../../utils/SocketProvider';
@@ -14,6 +15,7 @@ export default function Game({ roomNumber = 0, currentUser }) {
   const [gameState, setGameState] = useState('INPLAY');
   const [initialBetPlaced, setInitialBetPlaced] = useState(false);
   const [coinBalance, setCoinBalance] = useState('');
+  const [pot, setPot] = useState(0);
 
   const socket = useContext(SocketContext);
 
@@ -32,7 +34,7 @@ export default function Game({ roomNumber = 0, currentUser }) {
       console.log('current user coin balance: ', coin);
       setCoinBalance((prevBalance) => coin);
     });
-
+     
     //placebet Implementation
     socket.on('betPlaced', () => {
       console.log('Bet Successful');
@@ -43,7 +45,6 @@ export default function Game({ roomNumber = 0, currentUser }) {
     });
 
     socket.on('deal', (hand1, hand2, gameState) => {
-      console.log('gamestate on deal', gameState);
       setPlayer1Hand(hand1);
       setPlayer2Hand(hand2);
       setGameState(gameState || 'INPLAY');
@@ -69,14 +70,19 @@ export default function Game({ roomNumber = 0, currentUser }) {
   }, [socket]);
   // #endregion
   // #region playerActions
-
+  const won = () => {
+      console.log("YOU WOOOOOOOOON")
+      socket.emit('win', room)
+  };
   const drawCard = () => {
     console.log('Room on hit', room);
     socket.emit('hit', room);
   };
-  const placeBet = () => {
+  const placeBet = (bet) => {
     //TODO call api function to deduct bet from user account
-    socket.emit('bet', 10, room);
+    setInitialBetPlaced(true);
+    setPot(bet * 2);
+    socket.emit('bet', bet, room);
   };
 
   const stand = () => {
@@ -85,11 +91,11 @@ export default function Game({ roomNumber = 0, currentUser }) {
 
   const nextRound = () => {
     //TODO add funds to players accounts
+    socket.emit('nextRound', room);
     setInitialBetPlaced(false);
     setPlayer1Hand([]);
     setPlayer2Hand([]);
     setGameState('INPLAY');
-    socket.emit('nextRound', room);
   };
 
   // #endregion
@@ -107,7 +113,8 @@ export default function Game({ roomNumber = 0, currentUser }) {
           gameState={gameState}
           nextRound={nextRound}
           name={currentUser.username}
-        />
+          won={won}
+          />
       ) : (
         ''
       )}
@@ -122,7 +129,7 @@ export default function Game({ roomNumber = 0, currentUser }) {
         </div>
       </div>
 
-      <div className='table-container--mid'>
+      <div className='table-container--mid' style={{textAlign :"center"}}>
         {initialBetPlaced ? (
           <div className='mid--deck'>
             <Button
@@ -132,14 +139,12 @@ export default function Game({ roomNumber = 0, currentUser }) {
             >
               Hit
             </Button>
-            <div className='spacer'></div>
+            <div className='spacer' style={{textAlign :"center"}}> <h1>Current Pot:    {pot}</h1></div>
             <img src='/img/coin_pile.gif'></img>
           </div>
         ) : (
           <div className='mid--pot'>
-            <Button variant='pixel' backgroundColor='orange' onClick={placeBet}>
-              Place Bet
-            </Button>
+            <BetCounter placeBet={placeBet}/>
           </div>
         )}
       </div>

@@ -50,6 +50,7 @@ io.on('connection', (socket) => {
   });
   socket.on('bet', (bet, room) => {
     const player1 = activeGames[room].player1;
+    const pot = activeGames[room].pot;
     console.log('Bet Placed: ', bet);
     player1.bet(bet);
     console.log('player1.name: ', player1.name);
@@ -64,8 +65,7 @@ io.on('connection', (socket) => {
     socket.emit(
       'deal',
       activeGames[room].player1.hand,
-      activeGames[room].player2.hand,
-      activeGames[room].gamestate
+      activeGames[room].player2.hand
     );
   });
   socket.on('hit', (room) => {
@@ -85,13 +85,20 @@ io.on('connection', (socket) => {
     }
     socket.emit('stand', gameState);
   });
+  socket.on('win', (room)=>{
+    const player1 = activeGames[room].player1;
+    updateCoin(player1.name, player1.coins ).then((result) => {
+      console.log("REULST FROM UPDATE COINS", result);
+      socket.emit('loadUserCoins', result);
+    });
+  }) 
   socket.on('nextRound', (room) => {
+    console.log("NEXT ROUND CALLED");
     activeGames[room].nextRound();
   });
 
   socket.on('disconnect', (socket) => {
     console.log('socket disconnected');
-    //redirectnot on game page
   });
 });
 //if on heroku
