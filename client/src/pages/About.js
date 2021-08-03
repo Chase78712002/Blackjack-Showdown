@@ -61,7 +61,8 @@ export default function Aboutpage(props) {
         <div className='single'>
           <img src='/img/about/guy.png'></img>
           <div className='title'>Alvin Lin</div>
-          <div className='desc'>A recent graduate from Lighthouse Labs.</div>
+          <div className='desc'>A junior web developer with a background in Psychology. Recently graduated
+            from Lighthouse Labs fullstack web development bootcamp. </div>
           <div className='social-icon-container'>
             <a href='https://github.com/Chase78712002'>
               <img
