@@ -5,7 +5,7 @@ import { Button } from '../components/atoms/button/Button';
 import { loginUser, postUser } from '../utils/api';
 
 export default function CreateUserForm(props) {
-  const { updateUser } = props
+  const { updateUser } = props;
   const initialFormState = {
     username: '',
     password: '',
@@ -26,10 +26,10 @@ export default function CreateUserForm(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
     postUser(formData)
-      .then(res => {
-        console.log('register success!')
+      .then((res) => {
+        console.log('register success!');
         // loginUser(formData, updateUser)
-        history.push('/')
+        history.push('/');
       })
       .catch((error) => {
         setUserError(error);
@@ -48,7 +48,7 @@ export default function CreateUserForm(props) {
             name='username'
             onChange={handleChange}
             value={formData.username}
-            placeholder="username"
+            placeholder='username'
           />
         </label>
         <br />
@@ -60,7 +60,7 @@ export default function CreateUserForm(props) {
             name='password'
             onChange={handleChange}
             value={formData.password}
-            placeholder="password"
+            placeholder='password'
           />
         </label>
         <br />
@@ -72,7 +72,7 @@ export default function CreateUserForm(props) {
             name='email'
             onChange={handleChange}
             value={formData.email}
-            placeholder="email"
+            placeholder='email'
           />
         </label>
         <br />
