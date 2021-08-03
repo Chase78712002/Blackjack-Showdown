@@ -1,10 +1,7 @@
-.App {
-  text-align: center;
-}
-
 .main {
   display: flex;
   flex-direction: column;
+  width: 100%;
   align-items: center;
   justify-content: space-evenly;
   height: 100vh;
@@ -22,6 +19,7 @@
   color: midnightblue;
   text-align: center;
   text-shadow: 3px 3px mediumvioletred;
+  z-index: 10;
 }
 
 .error-alert {
@@ -53,5 +51,14 @@ a:hover {
 
   h1 {
     font-size: large;
+  }
+
+  .decorative-card1 {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    top: 10%;
+    left: 20%;
+    transform: rotate(-20deg);
   }
 }

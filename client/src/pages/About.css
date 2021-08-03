@@ -29,7 +29,24 @@
 
 .text-block {
   width: 50%;
+
   margin: 1em;
+}
+
+.screen {
+  width: 50%;
+  height: auto;
+  object-fit: contain;
+  margin: 2em;
+}
+
+.text-img-block {
+  width: 70%;
+  margin: 1em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .members {
@@ -100,5 +117,19 @@
   }
   .top-spacer {
     height: 50px;
+  }
+
+  .text-img-block {
+    width: 50%;
+    margin: 1em;
+    display: flex;
+    font-size: small;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  .screen {
+    width: 100%;
+    margin: 2em;
   }
 }
