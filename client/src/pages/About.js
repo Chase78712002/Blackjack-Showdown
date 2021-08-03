@@ -73,8 +73,8 @@ export default function Aboutpage(props) {
           <div className='title'>Evelyn Yoa</div>
 
           <div className='desc'>
-            A Jr. Dev with a background in VFX animation. Recently graduated
-            from Lighthouse Labs fullstack web development bootcamp.
+            A web developer with a background in VFX animation. Recently
+            graduated from Lighthouse Labs fullstack web development bootcamp.
           </div>
           <div className='social-icon-container'>
             <a href='https://github.com/eyoa'>
@@ -115,8 +115,12 @@ export default function Aboutpage(props) {
         </div>
         <div className='single'>
           <img src='/img/about/dice.png'></img>
-          <div className='title'>Audrey Plath</div>
-          <div className='desc'>A recent graduate from name? bootcamp.</div>
+          <div className='title'>Audrey Margolis</div>
+          <div className='desc'>
+            A freelance web/game developer. Graduate from Thinkful's Software
+            Engineering Bootcamp and Norco College with a certificate in Game
+            Design where she was awarded Best in Class for Game Design.
+          </div>
           <div className='social-icon-container'>
             <a href='https://github.com/AudreyMargolis'>
               <img
@@ -124,11 +128,11 @@ export default function Aboutpage(props) {
                 src='/img/about/GitHub-Mark-64px.png'
               ></img>
             </a>
-            <a href=''>
-              {/* <img
-              className='social-icon'
-              src='/img/about/linkedin_icon.png'
-            ></img> */}
+            <a href='https://www.linkedin.com/in/audreymargolis/'>
+              <img
+                className='social-icon'
+                src='/img/about/linkedin_icon.png'
+              ></img>
             </a>
           </div>
         </div>
