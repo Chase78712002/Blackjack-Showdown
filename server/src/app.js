@@ -22,7 +22,6 @@ app.use(morgan('dev'));
 app.use(cors());
 app.use(express.json());
 
-//app.use(rootRouter);
 const root = path.join(__dirname, '../../', 'client', 'build');
 app.use(express.static(root));
 app.get('*', (req, res) => {
