@@ -99,7 +99,7 @@ class Game {
         this.player2.handValue()[2]
       }`
     );
-    if (this.player1.handValue()[2] > this.player2.handValue()[2])
+    if (this.player1.handValue()[2] > this.player2.handValue()[2] || this.player2.handValue()[2] > 21 )
       return this.win(this.player1);
     else if (this.player1.handValue()[2] === this.player2.handValue()[2])
       return this.tie();
