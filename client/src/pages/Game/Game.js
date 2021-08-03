@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { Button } from '../../components/atoms/button/Button';
-import BetCounter  from "../../molecules/BetCounter"
+import BetCounter from '../../molecules/BetCounter';
 import Card from '../../atoms/Card';
 import './Game.css';
 import { SocketContext } from '../../utils/SocketProvider';
@@ -34,7 +34,7 @@ export default function Game({ roomNumber = 0, currentUser }) {
       console.log('current user coin balance: ', coin);
       setCoinBalance((prevBalance) => coin);
     });
-     
+
     //placebet Implementation
     socket.on('betPlaced', () => {
       console.log('Bet Successful');
@@ -71,8 +71,8 @@ export default function Game({ roomNumber = 0, currentUser }) {
   // #endregion
   // #region playerActions
   const won = () => {
-      console.log("YOU WOOOOOOOOON")
-      socket.emit('win', room)
+    console.log('YOU WOOOOOOOOON');
+    socket.emit('win', room);
   };
   const drawCard = () => {
     console.log('Room on hit', room);
@@ -114,7 +114,7 @@ export default function Game({ roomNumber = 0, currentUser }) {
           nextRound={nextRound}
           name={currentUser.username}
           won={won}
-          />
+        />
       ) : (
         ''
       )}
@@ -129,7 +129,7 @@ export default function Game({ roomNumber = 0, currentUser }) {
         </div>
       </div>
 
-      <div className='table-container--mid' style={{textAlign :"center"}}>
+      <div className='table-container--mid' style={{ textAlign: 'center' }}>
         {initialBetPlaced ? (
           <div className='mid--deck'>
             <Button
@@ -139,12 +139,14 @@ export default function Game({ roomNumber = 0, currentUser }) {
             >
               Hit
             </Button>
-            <div className='spacer' style={{textAlign :"center"}}> <h1>Current Pot:    {pot}</h1></div>
+            <div className='spacer' style={{ textAlign: 'center' }}>
+              <h1>Pot: {pot}</h1>
+            </div>
             <img src='/img/coin_pile.gif'></img>
           </div>
         ) : (
           <div className='mid--pot'>
-            <BetCounter placeBet={placeBet}/>
+            <BetCounter placeBet={placeBet} />
           </div>
         )}
       </div>

@@ -24,30 +24,17 @@
 .button--pixel {
   background-color: black;
   background: var(--inner);
-  box-shadow:
-      0   -6px 0  -2px var(--inner),
-      0    6px 0  -2px var(--inner),
-      0  -12px 0  -4px var(--inner),
-      0   12px 0  -4px var(--inner),
-      0  -18px 0  -8px var(--inner),
-      0   18px 0  -8px var(--inner),
-      0  -24px 0 -12px var(--inner),
-      0   24px 0 -12px var(--inner),
-     -6px  0   0   0   var(--border),
-      6px  0   0   0   var(--border),
-      0    0   0   4px var(--border),
-      0   -6px 0   2px var(--border),
-      0    6px 0   2px var(--border),
-      0  -10px 0   0   var(--border),
-      0   10px 0   0   var(--border),
-      0  -14px 0  -2px var(--border),
-      0   14px 0  -2px var(--border),
-      0  -18px 0  -4px var(--border),
-      0   18px 0  -4px var(--border),
-      0  -24px 0  -8px var(--border),
-      0   24px 0  -8px var(--border),
-      0  -30px 0 -12px var(--border),
-      0   30px 0 -12px var(--border);
+  box-shadow: 0 -6px 0 -2px var(--inner), 0 6px 0 -2px var(--inner),
+    0 -12px 0 -4px var(--inner), 0 12px 0 -4px var(--inner),
+    0 -18px 0 -8px var(--inner), 0 18px 0 -8px var(--inner),
+    0 -24px 0 -12px var(--inner), 0 24px 0 -12px var(--inner),
+    -6px 0 0 0 var(--border), 6px 0 0 0 var(--border), 0 0 0 4px var(--border),
+    0 -6px 0 2px var(--border), 0 6px 0 2px var(--border),
+    0 -10px 0 0 var(--border), 0 10px 0 0 var(--border),
+    0 -14px 0 -2px var(--border), 0 14px 0 -2px var(--border),
+    0 -18px 0 -4px var(--border), 0 18px 0 -4px var(--border),
+    0 -24px 0 -8px var(--border), 0 24px 0 -8px var(--border),
+    0 -30px 0 -12px var(--border), 0 30px 0 -12px var(--border);
 }
 
 .button--pixel:hover {
@@ -88,6 +75,41 @@
   padding: 12px 24px;
 }
 
+.button--bet-right {
+  font-size: 10px;
+  border-radius: 0px 10px 0px 0px;
+  height: 50px;
+  width: 50px;
+  padding: 5px 8px;
+  margin: 3px;
+}
+
+.button--bet-left {
+  font-size: 10px;
+  border-radius: 10px 0px 0px 0px;
+  height: 40px;
+  width: 50px;
+  padding: 5px 8px;
+  margin: 0;
+}
+
+.button--bet-right {
+  font-size: 10px;
+  border-radius: 0px 10px 0px 0px;
+  height: 40px;
+  width: 50px;
+  padding: 5px 8px;
+  margin: 0;
+}
+
+.button--bet {
+  font-size: 14px;
+  padding: 11px 20px;
+  border-radius: 0px 0px 10px 10px;
+  width: 160px;
+  height: 50px;
+}
+
 @media only screen and (max-width: 500px) {
   .button {
     width: 130px;
@@ -101,5 +123,35 @@
     width: 80px;
     padding: 5px 8px;
     margin: 3px;
+  }
+
+  .button--bet-right {
+    font-size: 10px;
+    border-radius: 0px 10px 0px 0px;
+    height: 40px;
+    width: 50px;
+    padding: 5px 8px;
+    margin: 0;
+    border: none;
+  }
+
+  .button--bet-left {
+    font-size: 10px;
+    border-radius: 10px 0px 0px 0px;
+    height: 40px;
+    width: 50px;
+    padding: 5px 8px;
+    margin: 0;
+    border: none;
+  }
+
+  .button--bet {
+    font-size: 14px;
+    padding: 11px 20px;
+    border-radius: 0px 0px 10px 10px;
+    width: 160px;
+    height: 50px;
+    margin: 0;
+    border: none;
   }
 }

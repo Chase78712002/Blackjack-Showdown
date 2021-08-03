@@ -85,15 +85,14 @@ io.on('connection', (socket) => {
     }
     socket.emit('stand', gameState);
   });
-  socket.on('win', (room)=>{
+  socket.on('win', (room) => {
     const player1 = activeGames[room].player1;
-    updateCoin(player1.name, player1.coins ).then((result) => {
-      console.log("REULST FROM UPDATE COINS", result);
+    updateCoin(player1.name, player1.coins).then((result) => {
       socket.emit('loadUserCoins', result);
     });
-  }) 
+  });
   socket.on('nextRound', (room) => {
-    console.log("NEXT ROUND CALLED");
+    console.log('NEXT ROUND CALLED');
     activeGames[room].nextRound();
   });
 
@@ -101,11 +100,8 @@ io.on('connection', (socket) => {
     console.log('socket disconnected');
   });
 });
-//if on heroku
-// if(process.eventNames.NODE_ENV === "production"){
-//   app.use(express.static('client/build'));
-// }
-// // knex database
+
+// knex database
 knex.migrate
   .latest()
   .then((migrations) => {

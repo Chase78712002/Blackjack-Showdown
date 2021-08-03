@@ -106,4 +106,8 @@ html {
   h2 {
     font-size: large;
   }
+  .bottombar img {
+    height: 38px;
+    width: auto;
+  }
 }
