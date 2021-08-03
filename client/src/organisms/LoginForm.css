@@ -44,9 +44,9 @@ input {
   }
   form {
     font-size: small;
+    max-width: 220px;
   }
   input {
     font-size: small;
-    max-width: 80%;
   }
 }

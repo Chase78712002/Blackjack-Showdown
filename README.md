@@ -6,12 +6,14 @@ A pixel-themed head to head blackjack game.
 
 ## Deployed site link
 
-  <https://blackjack-showdown.herokuapp.com/>
+<https://blackjack-showdown.herokuapp.com/>
 
 ## Setup
 
 Blackjack-Showdown uses **React** version `17.0.2`, **Express** version `4.17.1`. Please ensure you have a compatible version of ruby before continuing.
 ////config:set $(cat ./server/.env)
+set .env REACT_APP_API_BASE_URL to connect to frontend
+
 1. CD into 'client' and run `npm install` to install react and its dependencies.
 2. CD into 'server' and run `npm install` to install backend dependencies.
 

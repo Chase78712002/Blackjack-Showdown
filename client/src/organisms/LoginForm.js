@@ -30,35 +30,41 @@ export default function LoginForm(props) {
   };
 
   return (
-    <div>
+    <>
       <ErrorAlert error={userError} />
       <form onSubmit={handleSubmit}>
-        <label for='email'>Email:
-          <input
-            id='email'
-            type='email'
-            name='email'
-            onChange={handleChange}
-            value={formData.email}
-            placeholder="email"
-          />
-        </label>
+        <div className='group'>
+          <label for='email'>
+            Email:
+            <input
+              id='email'
+              type='email'
+              name='email'
+              onChange={handleChange}
+              value={formData.email}
+              placeholder='email'
+            />
+          </label>
+        </div>
         <br />
-        <label for='password'>Password:
-          <input
-            id='password'
-            type='password'
-            name='password'
-            onChange={handleChange}
-            value={formData.password}
-            placeholder="password"
-          />
-        </label>
+        <div className='group'>
+          <label for='password'>
+            Password:
+            <input
+              id='password'
+              type='password'
+              name='password'
+              onChange={handleChange}
+              value={formData.password}
+              placeholder='password'
+            />
+          </label>
+        </div>
         <br />
         <Button type='submit' variant='pixel' backgroundColor='midnightblue'>
           Login
         </Button>
       </form>
-    </div>
+    </>
   );
 }

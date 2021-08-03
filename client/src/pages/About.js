@@ -4,7 +4,7 @@ import { Button } from '../components/atoms/button/Button';
 
 export default function Aboutpage(props) {
   return (
-    <div className='content'>
+    <div className='explain'>
       <Link to='/' className='back'>
         <Button size='tiny' backgroundColor='orange'>
           Back
