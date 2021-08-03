@@ -61,7 +61,11 @@ export async function loginUser(data, updateUser, errorfunc) {
       }
     })
     .catch((error) => {
-      errorfunc(error);
+      if(errorfunc){
+
+        errorfunc(error);
+      }
+      console.log('login error:',error)
     });
 }
 
