@@ -6,7 +6,7 @@ A pixel-themed head to head blackjack game.
 
 ## Deployed site link
 
-    <>
+  <https://blackjack-showdown.herokuapp.com/>
 
 ## Setup
 
