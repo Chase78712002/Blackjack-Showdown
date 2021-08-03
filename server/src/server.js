@@ -64,7 +64,8 @@ io.on('connection', (socket) => {
     socket.emit(
       'deal',
       activeGames[room].player1.hand,
-      activeGames[room].player2.hand
+      activeGames[room].player2.hand,
+      activeGames[room].gamestate
     );
   });
   socket.on('hit', (room) => {
@@ -90,6 +91,7 @@ io.on('connection', (socket) => {
 
   socket.on('disconnect', (socket) => {
     console.log('socket disconnected');
+    //redirectnot on game page
   });
 });
 //if on heroku

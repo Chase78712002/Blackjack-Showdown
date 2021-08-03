@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { Button } from '../../components/atoms/button/Button';
 import Card from '../../atoms/Card';
@@ -42,9 +42,11 @@ export default function Game({ roomNumber = 0, currentUser }) {
       }
     });
 
-    socket.on('deal', (hand1, hand2) => {
+    socket.on('deal', (hand1, hand2, gameState) => {
+      console.log('gamestate on deal', gameState);
       setPlayer1Hand(hand1);
       setPlayer2Hand(hand2);
+      setGameState(gameState || 'INPLAY');
     });
     socket.on('hit', (hand, handState) => {
       setPlayer1Hand(hand);
@@ -101,7 +103,11 @@ export default function Game({ roomNumber = 0, currentUser }) {
         </Link>
       </div>
       {gameState != 'INPLAY' ? (
-        <GameEnd gameState={gameState} nextRound={nextRound} />
+        <GameEnd
+          gameState={gameState}
+          nextRound={nextRound}
+          name={currentUser.username}
+        />
       ) : (
         ''
       )}
