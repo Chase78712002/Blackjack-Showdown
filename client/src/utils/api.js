@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { Component } from 'react';
 import authHeader from './authHeader';
 
 const API_BASE_URL =
-  process.env.REACT_APP_API_BASE_URL || 'http://localhost:8080';
+  process.env.REACT_APP_API_BASE_URL ||
+  'https://blackjack-showdown.herokuapp.com/';
 
 const headers = new Headers();
 headers.append('Content-Type', 'application/json');
@@ -61,11 +61,10 @@ export async function loginUser(data, updateUser, errorfunc) {
       }
     })
     .catch((error) => {
-      if(errorfunc){
-
+      if (errorfunc) {
         errorfunc(error);
       }
-      console.log('login error:',error)
+      console.log('login error:', error);
     });
 }
 
