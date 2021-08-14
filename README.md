@@ -77,3 +77,78 @@ npm run storybook
 !["Game 2"](https://github.com/Chase78712002/Blackjack-Showdown/blob/frontend-landing/client/public/img/screenshots/game2.png?raw=true)
 !["Dealer won"](https://github.com/Chase78712002/Blackjack-Showdown/blob/frontend-landing/client/public/img/screenshots/dealerwin.png?raw=true)
 !["Player won"](https://github.com/Chase78712002/Blackjack-Showdown/blob/frontend-landing/client/public/img/screenshots/playerwin.png?raw=true)
+
+## Backend Documentation
+
+#### Users
+
+Authenticate User login
+
+- PUT https://blackjack-showdown.herokuapp.com/users/login
+
+```js
+  body: {"data": {
+    "email": "spidey@neighbourhood.com",
+    "password": "password"
+  }}
+```
+
+Successful Response:
+
+```js
+{
+"user": {
+"email": "spidey@neighbourhood.com",
+"username": "Spiderman",
+"profile_img_url": null,
+"coins": 110
+},
+"accessToken": "encoded token"
+}
+```
+
+Invald credentials response:
+
+```js
+{
+    "message": "invalid"
+}
+```
+
+Error Response:
+
+```js
+{
+    "error": "error message"
+}
+```
+
+- POST https://blackjack-showdown.herokuapp.com/users/register
+
+```js
+body: {
+  "data": {
+    "username": "test7",
+    "email": "test7@testing.com",
+    "password": "password",
+    "coins": 100
+  }}
+```
+
+Success response:
+
+```js
+
+```
+
+Error response
+
+```js
+{
+    "error": "Username already exists!"
+}
+```
+
+#### Game
+
+socket based connection
