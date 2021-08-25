@@ -1,7 +1,43 @@
 .card {
   height: 160px;
   width: 120px;
+  perspective: 1000px;
+}
+
+.card-align {
+  position: relative;
+  width: inherit;
+  height: inherit;
+  transform-style: preserve-3d;
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  margin: 0;
   background-repeat: no-repeat;
+  -webkit-animation: flip 1s;
+  animation: flip 1s;
+}
+
+@-webkit-keyframes flip {
+  from {
+    transform: rotateY(-180deg);
+  }
+  to {
+    transform: rotateY(0deg);
+  }
+}
+
+@keyframes flip {
+  from {
+    transform: rotateY(-180deg);
+  }
+  to {
+    transform: rotateY(0deg);
+  }
 }
 
 @media only screen and (max-width: 500px) {
